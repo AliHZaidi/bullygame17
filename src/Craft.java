@@ -33,7 +33,6 @@ public class Craft {
         imgFileNames = new ArrayList<String>();
         File curFolder = new File("./");
         File[] files = curFolder.listFiles();
-        System.out.println(files.length);
         for(int i = 0; i < files.length; ++i){
         	if(files[i].getName().contains(".png")){
         		imgFileNames.add(files[i].getName());
@@ -101,7 +100,6 @@ public class Craft {
     */
     private boolean collison(int x, int y, ArrayList<Box> boxes) {
         for(Box b : boxes) {
-            System.out.println(x + " " + b.getX());
             if(( x + 32 > b.getX() && x < b.getX() + 32) && (y + 32 > b.getY() && y < b.getY() + 32)) return true;
         }
 
