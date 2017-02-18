@@ -5,12 +5,12 @@ import java.util.concurrent.*;
 
 
 
-public class npc {
+public class NPC {
 	    private int x;
 	    private int y;
 	    private Image image;
 
-	    public npc() {
+	    public NPC() {
 	        
 	        initNpc();
 	    }

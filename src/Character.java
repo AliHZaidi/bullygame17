@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public class Craft {
+public class Character {
 	
     private int dx;
     private int dy;
@@ -17,12 +17,15 @@ public class Craft {
     private ArrayList<Image> lSides;
     
     private Image curImage;
-    
     private String name;
-    
     private ArrayList<String> imgFileNames;
     
-    public Craft(String name) {
+    private boolean upIsPressed = false;
+    private boolean downIsPressed = false;
+    private boolean leftIsPressed = false;
+    private boolean rightIsPressed = false;
+    
+    public Character(String name) {
 
         fronts = new ArrayList<Image>();
         backs = new ArrayList<Image>();
@@ -41,8 +44,8 @@ public class Craft {
     }
     
     private void initCraft() {
-        x = Board.BOARD_MAX_X / 2;
-        y = Board.BOARD_MAX_Y / 2;
+        x = Scene.BOARD_MAX_X / 2;
+        y = Scene.BOARD_MAX_Y / 2;
         
     	for(String e : imgFileNames){
         	if(e.contains("back") && e.contains(name)){
@@ -82,15 +85,15 @@ public class Craft {
     	if (x <= 10) {
     		x = 10;
     	}
-    	else if (x >= Board.BOARD_MAX_X - 64) {
-    		x = Board.BOARD_MAX_X - 64;
+    	else if (x >= Scene.BOARD_MAX_X - 64) {
+    		x = Scene.BOARD_MAX_X - 64;
     	}
     	
     	if (y <= 10) {
     		y = 10;
     	}
-    	else if (y >= Board.BOARD_MAX_Y - 96) {
-    		y = Board.BOARD_MAX_Y - 96;
+    	else if (y >= Scene.BOARD_MAX_Y - 96) {
+    		y = Scene.BOARD_MAX_Y - 96;
     	}
     }
     
@@ -123,23 +126,25 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
             dx = -1;
-            curImage = lSides.get(0);
+            leftIsPressed = true;
         }
 
         if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
             dx = 1;
-            curImage = rSides.get(0);
+            rightIsPressed = true;
         }
 
         if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
             dy = -1;
-            curImage = backs.get(0);
+            upIsPressed = true;
         }
 
         if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
             dy = 1;
-            curImage = fronts.get(0);
+            downIsPressed = true;
         }
+        
+        updateSprite();
     }
 
     public void keyReleased(KeyEvent e) {       
@@ -147,18 +152,39 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = 0;
+            leftIsPressed = false;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             dx = 0;
+            rightIsPressed = false;
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = 0;
+            upIsPressed = false;
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
+            downIsPressed = false;
         }
+        
+        updateSprite();
+    }
+    
+    private void updateSprite() {
+    	if (upIsPressed) {
+    		curImage = backs.get(0);
+    	}
+    	else if (downIsPressed) {
+    		curImage = fronts.get(0);
+    	}
+    	else if (leftIsPressed) {
+    		curImage = lSides.get(0);
+    	}
+    	else if (rightIsPressed) {
+            curImage = rSides.get(0);
+    	}
     }
 }
