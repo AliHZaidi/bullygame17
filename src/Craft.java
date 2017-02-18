@@ -113,25 +113,21 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
-//            curImage = lSides.get(0);
             leftIsPressed = true;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
-//            curImage = rSides.get(0);
             rightIsPressed = true;
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = -1;
-//            curImage = backs.get(0);
             upIsPressed = true;
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
-//            curImage = fronts.get(0);
             downIsPressed = true;
         }
         
