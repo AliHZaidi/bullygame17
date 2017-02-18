@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class Craft {
 	
-
     private int dx;
     private int dy;
     private int x;
@@ -111,22 +110,22 @@ public class Craft {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
             dx = -1;
             leftIsPressed = true;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
             dx = 1;
             rightIsPressed = true;
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
             dy = -1;
             upIsPressed = true;
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
             dy = 1;
             downIsPressed = true;
         }

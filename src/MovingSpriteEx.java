@@ -16,7 +16,7 @@ public class MovingSpriteEx extends JFrame {
 
         setResizable(false);
         
-        setTitle("Moving sprite");
+        setTitle("Bully Game");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
