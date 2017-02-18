@@ -17,12 +17,15 @@ public class Craft {
     private ArrayList<Image> rSides;
     private ArrayList<Image> lSides;
     
+    private boolean upIsPressed = false;
+    private boolean downIsPressed = false;
+    private boolean leftIsPressed = false;
+    private boolean rightIsPressed = false;
+    
     private Image curImage;
-    
     private String name;
-    
     private ArrayList<String> imgFileNames;
-    
+
     public Craft(String name) {
 
         fronts = new ArrayList<Image>();
@@ -110,23 +113,29 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
-            curImage = lSides.get(0);
+//            curImage = lSides.get(0);
+            leftIsPressed = true;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
-            curImage = rSides.get(0);
+//            curImage = rSides.get(0);
+            rightIsPressed = true;
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = -1;
-            curImage = backs.get(0);
+//            curImage = backs.get(0);
+            upIsPressed = true;
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
-            curImage = fronts.get(0);
+//            curImage = fronts.get(0);
+            downIsPressed = true;
         }
+        
+        updateSprite();
     }
 
     public void keyReleased(KeyEvent e) {       
@@ -134,18 +143,39 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = 0;
+            leftIsPressed = false;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             dx = 0;
+            rightIsPressed = false;
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = 0;
+            upIsPressed = false;
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
+            downIsPressed = false;
         }
+        
+        updateSprite();
+    }
+    
+    private void updateSprite() {
+    	if (upIsPressed) {
+    		curImage = backs.get(0);
+    	}
+    	else if (downIsPressed) {
+    		curImage = fronts.get(0);
+    	}
+    	else if (leftIsPressed) {
+    		curImage = lSides.get(0);
+    	}
+    	else if (rightIsPressed) {
+    		curImage = rSides.get(0);
+    	}
     }
 }
