@@ -72,10 +72,14 @@ public class Craft {
     }
 
 
-    public void move() {
+    public void move(ArrayList<Box> boxes) {
     	
-    	x += dx;
-    	y += dy;
+
+        if(!collison(x+dx, y+dy, boxes)) {
+            x += dx;
+    	    y += dy;
+        }
+    	
     	
     	if (x <= 10) {
     		x = 10;
@@ -90,6 +94,18 @@ public class Craft {
     	else if (y >= Board.BOARD_MAX_Y - 96) {
     		y = Board.BOARD_MAX_Y - 96;
     	}
+    }
+    
+    /*
+    Takes an x and y coord and checks for overlap with block object
+    */
+    private boolean collison(int x, int y, ArrayList<Box> boxes) {
+        for(Box b : boxes) {
+            System.out.println(x + " " + b.getX());
+            if(( x + 32 > b.getX() && x < b.getX() + 32) && (y + 32 > b.getY() && y < b.getY() + 32)) return true;
+        }
+
+        return false;
     }
 
     public int getX() {
