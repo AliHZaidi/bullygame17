@@ -29,7 +29,7 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        craft = new Craft();
+        craft = new Craft("bully");
 
         timer = new Timer(DELAY, this);
         timer.start();        

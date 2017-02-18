@@ -11,8 +11,9 @@ public class MovingSpriteEx extends JFrame {
     private void initUI() {
         
         add(new Board());
-        
+
         setSize(Board.BOARD_MAX_X, Board.BOARD_MAX_Y);
+
         setResizable(false);
         
         setTitle("Moving sprite");

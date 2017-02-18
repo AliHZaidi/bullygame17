@@ -1,27 +1,74 @@
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 public class Craft {
+	
 
     private int dx;
     private int dy;
     private int x;
     private int y;
-    private Image image;
-
-    private int currentDirection = 0;
+    private ArrayList<Image> fronts;
+    private ArrayList<Image> backs;
+    private ArrayList<Image> rSides;
+    private ArrayList<Image> lSides;
     
-    public Craft() {
+    private Image curImage;
+    
+    private String name;
+    
+    private ArrayList<String> imgFileNames;
+    
+    public Craft(String name) {
+
+        fronts = new ArrayList<Image>();
+        backs = new ArrayList<Image>();
+        lSides = new ArrayList<Image>();
+        rSides = new ArrayList<Image>();
+        this.name = name;
+        imgFileNames = new ArrayList<String>();
+        File curFolder = new File("./");
+        File[] files = curFolder.listFiles();
+        System.out.println(files.length);
+        for(int i = 0; i < files.length; ++i){
+        	if(files[i].getName().contains(".png")){
+        		imgFileNames.add(files[i].getName());
+        	}
+        }
         initCraft();
     }
     
     private void initCraft() {
-        ImageIcon ii = new ImageIcon("images/sprites/blue knight.png");
-        image = ii.getImage();
-        
         x = Board.BOARD_MAX_X / 2;
-        y = Board.BOARD_MAX_Y / 2;       
+        y = Board.BOARD_MAX_Y / 2;
+        
+    	for(String e : imgFileNames){
+        	if(e.contains("back") && e.contains(name)){
+        		backs.add((new ImageIcon(e).getImage()));
+        	}
+        }
+    	for(String e : imgFileNames){
+        	if(e.contains("front") && e.contains(name)){
+        		fronts.add((new ImageIcon(e).getImage()));
+        	}
+        }
+    	for(String e : imgFileNames){
+        	if(e.contains("left_side") && e.contains(name)){
+        		lSides.add((new ImageIcon(e).getImage()));
+        	}
+        }
+    	for(String e : imgFileNames){
+        	if(e.contains("right_side") && e.contains(name)){
+        		rSides.add((new ImageIcon(e).getImage()));
+        	}
+        }
+        curImage = fronts.get(0);
+        x = 40;
+        y = 60;
     }
 
 
@@ -54,7 +101,7 @@ public class Craft {
     }
 
     public Image getImage() {
-        return image;
+        return curImage;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -63,27 +110,26 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
-            currentDirection = KeyEvent.VK_LEFT;
+            curImage = lSides.get(0);
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
-            currentDirection = KeyEvent.VK_RIGHT;
+            curImage = rSides.get(0);
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = -1;
-            currentDirection = KeyEvent.VK_UP;
+            curImage = backs.get(0);
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
-            currentDirection = KeyEvent.VK_DOWN;
+            curImage = fronts.get(0);
         }
     }
 
-    public void keyReleased(KeyEvent e) {
-        
+    public void keyReleased(KeyEvent e) {       
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
