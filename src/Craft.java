@@ -16,15 +16,12 @@ public class Craft {
     private ArrayList<Image> rSides;
     private ArrayList<Image> lSides;
     
-    private boolean upIsPressed = false;
-    private boolean downIsPressed = false;
-    private boolean leftIsPressed = false;
-    private boolean rightIsPressed = false;
-    
     private Image curImage;
+    
     private String name;
+    
     private ArrayList<String> imgFileNames;
-
+    
     public Craft(String name) {
 
         fronts = new ArrayList<Image>();
@@ -35,7 +32,6 @@ public class Craft {
         imgFileNames = new ArrayList<String>();
         File curFolder = new File("./");
         File[] files = curFolder.listFiles();
-        System.out.println(files.length);
         for(int i = 0; i < files.length; ++i){
         	if(files[i].getName().contains(".png")){
         		imgFileNames.add(files[i].getName());
@@ -74,10 +70,14 @@ public class Craft {
     }
 
 
-    public void move() {
+    public void move(ArrayList<Box> boxes) {
     	
-    	x += dx;
-    	y += dy;
+
+        if(!collison(x+dx, y+dy, boxes)) {
+            x += dx;
+    	    y += dy;
+        }
+    	
     	
     	if (x <= 10) {
     		x = 10;
@@ -92,6 +92,17 @@ public class Craft {
     	else if (y >= Board.BOARD_MAX_Y - 96) {
     		y = Board.BOARD_MAX_Y - 96;
     	}
+    }
+    
+    /*
+    Takes an x and y coord and checks for overlap with block object
+    */
+    private boolean collison(int x, int y, ArrayList<Box> boxes) {
+        for(Box b : boxes) {
+            if(( x + 32 > b.getX() && x < b.getX() + 32) && (y + 32 > b.getY() && y < b.getY() + 32)) return true;
+        }
+
+        return false;
     }
 
     public int getX() {
@@ -112,25 +123,23 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
             dx = -1;
-            leftIsPressed = true;
+            curImage = lSides.get(0);
         }
 
         if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
             dx = 1;
-            rightIsPressed = true;
+            curImage = rSides.get(0);
         }
 
         if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
             dy = -1;
-            upIsPressed = true;
+            curImage = backs.get(0);
         }
 
         if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
             dy = 1;
-            downIsPressed = true;
+            curImage = fronts.get(0);
         }
-        
-        updateSprite();
     }
 
     public void keyReleased(KeyEvent e) {       
@@ -138,39 +147,18 @@ public class Craft {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = 0;
-            leftIsPressed = false;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             dx = 0;
-            rightIsPressed = false;
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = 0;
-            upIsPressed = false;
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
-            downIsPressed = false;
         }
-        
-        updateSprite();
-    }
-    
-    private void updateSprite() {
-    	if (upIsPressed) {
-    		curImage = backs.get(0);
-    	}
-    	else if (downIsPressed) {
-    		curImage = fronts.get(0);
-    	}
-    	else if (leftIsPressed) {
-    		curImage = lSides.get(0);
-    	}
-    	else if (rightIsPressed) {
-    		curImage = rSides.get(0);
-    	}
     }
 }
