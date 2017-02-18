@@ -15,6 +15,8 @@ public class Board extends JPanel implements ActionListener {
     private Timer timer;
     private Craft craft;
     private final int DELAY = 10;
+    public static final int BOARD_MAX_X = 640;
+    public static final int BOARD_MAX_Y = 640;
 
     public Board() {
 
