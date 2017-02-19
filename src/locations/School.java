@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import game.Box;
+import game.Locker;
 import game.NonPlayableObject;
 
 public class School extends Location {
@@ -17,7 +18,7 @@ public class School extends Location {
         }
 		for (int i = 0; i < 20; i++) {
 			if (i == 14) {
-				super.map.add(new Box(new ImageIcon("player_locker.png").getImage(), i, 1));
+				super.map.add(new Locker(new ImageIcon("player_locker.png").getImage(), i, 1));
 			}
 			else {
 				super.map.add(new Box(new ImageIcon("locker.png").getImage(), i, 1));

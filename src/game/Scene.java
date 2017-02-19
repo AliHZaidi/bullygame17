@@ -23,96 +23,100 @@ import java.util.ArrayList;
 
 public class Scene extends JPanel implements ActionListener {
 
-    private Timer timer;
-    private Character character;
-    private final int DELAY = 10;
-    public static final int SCENE_MAX_X = 640;
-    public static final int SCENE_MAX_Y = 640;
+	private Timer timer;
+	private Character character;
+	private final int DELAY = 10;
+	public static final int SCENE_MAX_X = 640;
+	public static final int SCENE_MAX_Y = 640;
 
-    private Location currentLocation;
+	private Location currentLocation;
 
-    public enum Locations  {
-        HOME, OUTDOOR, SCHOOL
-    }
-    
-    private boolean startScreen;
+	public enum Locations  {
+		HOME, OUTDOOR, SCHOOL
+	}
 
-    public Scene() {
-    	addKeyListener(new TAdapter());
-        setFocusable(true);
-        setBackground(Color.WHITE);
+	private boolean startScreen;
 
-        character = new Character("hero");
-        
-        //Add boxes, this will eventually be loaded from some sort of map
-        character.setLocation(new PlayerHome());
-        
-        startScreen = true;
+	public Scene() {
+		addKeyListener(new TAdapter());
+		setFocusable(true);
+		setBackground(Color.WHITE);
 
-        timer = new Timer(DELAY, this);
-        timer.start();   
-    }
+		character = new Character("hero");
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+		//Add boxes, this will eventually be loaded from some sort of map
+		character.setLocation(new PlayerHome());
 
-        doDrawing(g);
+		startScreen = true;
 
-        Toolkit.getDefaultToolkit().sync();
-    }
+		timer = new Timer(DELAY, this);
+		timer.start();   
+	}
 
-    private void doDrawing(Graphics g) {
-       Graphics2D g2d = (Graphics2D) g;
-       
-       if(startScreen) {
-    	   ImageIcon ii = new ImageIcon("Splash.png");
-    	   g2d.drawImage(ii.getImage(),0,0,this);
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+
+		doDrawing(g);
+
+		Toolkit.getDefaultToolkit().sync();
+	}
+
+	private void doDrawing(Graphics g) {
+		if (character.isMovingAtAll()) {
+			character.setInteractText(null);
+		}
+		
+		Graphics2D g2d = (Graphics2D) g;
+
+		if(startScreen) {
+			ImageIcon ii = new ImageIcon("Splash.png");
+			g2d.drawImage(ii.getImage(),0,0,this);
 
 
-       } else if (character.getHappiness() > 0) { 
-    	     g2d.setFont(new Font("Dialog", 0, 14));
-    	     Location curL = character.getLocation();
-    	     if(character.getInteractText() != null){
-    	    	 Dialogue dlg = character.getInteractText();
-    	    	 dlg.draw(g2d);
-    	     }
-    	     g2d.setFont(new Font("Dialog", 0, 24));
-             curL.draw(g, this);
-             g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
-             
-             g2d.setColor(Color.RED);
-             g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
-       }
-       else{
-    	  
-    	   
-       }
+		} else if (character.getHappiness() > 0) { 
+			g2d.setFont(new Font("Dialog", 0, 14));
+			Location curL = character.getLocation();
+			if(character.getInteractText() != null){
+				Dialogue dlg = character.getInteractText();
+				dlg.draw(g2d);
+			}
+			g2d.setFont(new Font("Dialog", 0, 24));
+			curL.draw(g, this);
+			g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
 
-    }
+			g2d.setColor(Color.RED);
+			g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
+		}
+		else{
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-        character.move();
-        repaint();  
-    }
+		}
 
-    private class TAdapter extends KeyAdapter {
+	}
 
-        @Override
-        public void keyReleased(KeyEvent e) {
-            
-            if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
-                startScreen = false;
-            }
-            
-            character.keyReleased(e);
-        }
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
-        @Override
-        public void keyPressed(KeyEvent e) {
-            character.keyPressed(e, character.getLocation().getMap());
-        }
-    }
+		character.move();
+		repaint();  
+	}
+
+	private class TAdapter extends KeyAdapter {
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+
+			if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
+				startScreen = false;
+			}
+
+			character.keyReleased(e);
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			character.keyPressed(e, character.getLocation().getMap());
+		}
+	}
 }
