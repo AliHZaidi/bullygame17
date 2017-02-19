@@ -189,10 +189,10 @@ public class Character {
     /*
     Takes an x and y coord and checks for overlap with block object
     */
-    private boolean collison(int x, int y, ArrayList<Box> boxes) {
-        for(Box b : boxes) {
-            if(( x + 32 > b.getX() && x < b.getX() + 32) 
-            		&& (y + 32 > b.getY() && y < b.getY() + 32)) return true;
+    private boolean collison(int x, int y, ArrayList<NonPlayableObject> arrayList) {
+        for(NonPlayableObject npo : arrayList) {
+            if(( x + 32 > npo.getX() && x < npo.getX() + 32) 
+            		&& (y + 32 > npo.getY() && y < npo.getY() + 32)) return true;
         }
 
         return false;
@@ -228,11 +228,11 @@ public class Character {
         return curImage;
     }
 
-    public void keyPressed(KeyEvent e, ArrayList<Box> boxes) {
+    public void keyPressed(KeyEvent e, ArrayList<NonPlayableObject> arrayList) {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_SPACE && this.isNearNPC(boxes)) {
+        if (key == KeyEvent.VK_SPACE && this.isNearNPC(arrayList)) {
         	System.out.println("hell yeah d00d");
         }
         
@@ -306,9 +306,9 @@ public class Character {
 	}
     
 
-    private boolean isNearNPC(ArrayList<Box> boxes) {
-    	for (Box b : boxes) {
-            if ((x + 40 > b.getX() && x < b.getX() + 40) && (y + 40 > b.getY() && y < b.getY() + 40)) {
+    private boolean isNearNPC(ArrayList<NonPlayableObject> arrayList) {
+    	for (NonPlayableObject npo : arrayList) {
+            if ((x + 40 > npo.getX() && x < npo.getX() + 40) && (y + 40 > npo.getY() && y < npo.getY() + 40)) {
             	return true;
             }
         }

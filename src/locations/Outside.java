@@ -3,11 +3,12 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import game.Box;
+import game.NonPlayableObject;
 
 public class Outside extends Location {
 
     public Outside() {
-        super.map = new ArrayList<Box>();
+        super.map = new ArrayList<NonPlayableObject>();
         super.background = new ImageIcon("outdoor.png").getImage();
         
         for(int i = 0; i < 20; i++) {
