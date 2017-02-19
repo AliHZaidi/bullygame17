@@ -81,8 +81,12 @@ public class Scene extends JPanel implements ActionListener {
              curL.draw(g, this);
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
              
-             g2d.setColor(Color.RED);
-             g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
+
+             //Draw score
+             g2d.setColor(Color.WHITE);
+             g2d.fillRoundRect(520, 15, 100, 40, 25, 25);
+             g2d.setColor(Color.BLACK);
+             g2d.drawString("☺ " + character.getHappiness(), 530, 43);
        }
        else{
     	  
