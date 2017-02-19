@@ -29,6 +29,8 @@ public class Scene extends JPanel implements ActionListener {
 	public static final int SCENE_MAX_X = 640;
 	public static final int SCENE_MAX_Y = 640;
 
+	private int creditcounter = 0;
+
 	private Location currentLocation;
 
 	public enum Locations  {
@@ -89,9 +91,29 @@ public class Scene extends JPanel implements ActionListener {
 			g2d.setColor(Color.BLACK);
 			g2d.drawString("☺ " + character.getHappiness(), 530, 43);
 		}
-       else {
-    	  
-    	   
+       else{
+               creditcounter++;
+               if(creditcounter <250)
+               {
+                   g2d.drawImage(new ImageIcon("credit1.png").getImage(),0,0,this);
+                
+               }
+              
+               if(creditcounter<500 && creditcounter> 251)
+               {
+                   ImageIcon a =new ImageIcon("credit2.png");
+                   g2d.drawImage(a.getImage(),0,0,this);
+               }
+              
+               if(creditcounter >501 && creditcounter < 750)
+               {
+                   g2d.drawImage(new ImageIcon("credit3.png").getImage(),0,0,this);
+               }
+              
+               if(creditcounter > 751)
+               {
+                   g2d.drawImage(new ImageIcon("credit4.png").getImage(),0,0,this);
+               }
        }
 
 	}
