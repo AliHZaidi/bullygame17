@@ -46,11 +46,8 @@ public class Computer extends NonPlayableObject{
 				return new Dialogue("You have 1 new Message: " + 
 						meanComments[position++] + "\n Your happiness has now decreased");
 			}
-		}else{
-			return new Dialogue("You have 1 new Message: " + 
-					meanComments[position++] + "\n Your happiness has now decreased");
 		}
-		return null;
+		return new Dialogue("");
 	}
 	/**
 	 * 
