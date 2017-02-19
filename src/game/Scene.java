@@ -92,24 +92,24 @@ public class Scene extends JPanel implements ActionListener {
 
        else{
                creditcounter++;
-               if(creditcounter <250)
+               if(creditcounter <750)
                {
                    g2d.drawImage(new ImageIcon("credit1.png").getImage(),0,0,this);
                 
                }
               
-               if(creditcounter<500 && creditcounter> 251)
+               if(creditcounter<1500 && creditcounter> 751)
                {
                    ImageIcon a =new ImageIcon("credit2.png");
                    g2d.drawImage(a.getImage(),0,0,this);
                }
               
-               if(creditcounter >501 && creditcounter < 750)
+               if(creditcounter >1501 && creditcounter < 2250)
                {
                    g2d.drawImage(new ImageIcon("credit3.png").getImage(),0,0,this);
                }
               
-               if(creditcounter > 751)
+               if(creditcounter > 2251 )
                {
                    g2d.drawImage(new ImageIcon("credit4.png").getImage(),0,0,this);
                }
