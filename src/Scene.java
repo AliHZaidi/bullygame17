@@ -70,8 +70,12 @@ public class Scene extends JPanel implements ActionListener {
 
        } else {
              
-             
-             character.getLocation().draw(g, this);
+             Location curL = character.getLocation();
+             curL.draw(g, this);
+//             if(curL instanceof Home && character.get){
+//            	 g2d.drawImage(((Home) curL).getCPU().getImage(), ((Home) curL).getCPU().getX(), 
+//            			 ((Home) curL).getCPU().getX(), this);
+//             }
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
              g2d.setFont(new Font("Dialog", 0, 24));
              g2d.setColor(Color.RED);
