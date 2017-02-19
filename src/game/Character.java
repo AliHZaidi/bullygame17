@@ -235,13 +235,9 @@ public class Character {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_SPACE && this.isNearNPC(arrayList)) {
-        	if(nearbyObj instanceof Computer){
-        		curText = ((Computer) nearbyObj).getPrompt(this);
-        	}else if(nearbyObj instanceof Basketball){
-        		curText = ((Basketball) nearbyObj).getPrompt(this);
+        	if(nearbyObj.getPrompt(this, false) != null){
+        		curText = nearbyObj.getPrompt(this, true);
         	}
-        	else if(nearbyObj instanceof Television)
-        		curText = ((Television) nearbyObj).getPrompt(this);
         }
         
         else if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {

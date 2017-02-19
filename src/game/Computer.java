@@ -31,19 +31,24 @@ public class Computer extends NonPlayableObject{
 	public Image getImage(){
 		return img;
 	}
-	public Dialogue getPrompt(Character x){
-		if(position <4)
-		{
-		if(position == 0)
-			x.decreaseHappiness(15);
-		else if(position == 1)
-			x.decreaseHappiness( 25);
-		else if(position == 2)
-			x.decreaseHappiness(35);
-		else if(position == 3)
-			x.decreaseHappiness(45);
-		return new Dialogue("You have 1 new Message: " + 
-		meanComments[position++] + "\n Your happiness has now decreased");
+	public Dialogue getPrompt(Character x, boolean shudChange){
+		if(shudChange){
+			if(position <4)
+			{
+				if(position == 0)
+					x.decreaseHappiness(15);
+				else if(position == 1)
+					x.decreaseHappiness( 25);
+				else if(position == 2)
+					x.decreaseHappiness(35);
+				else if(position == 3)
+					x.decreaseHappiness(45);
+				return new Dialogue("You have 1 new Message: " + 
+						meanComments[position++] + "\n Your happiness has now decreased");
+			}
+		}else{
+			return new Dialogue("You have 1 new Message: " + 
+					meanComments[position++] + "\n Your happiness has now decreased");
 		}
 		return null;
 	}
