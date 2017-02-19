@@ -240,6 +240,8 @@ public class Character {
         	}else if(nearbyObj instanceof Basketball){
         		curText = ((Basketball) nearbyObj).getPrompt(this);
         	}
+        	else if(nearbyObj instanceof Television)
+        		curText = ((Television) nearbyObj).getPrompt(this);
         }
         
         else if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
