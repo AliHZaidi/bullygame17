@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import locations.PlayerHome;
+import locations.School;
 import locations.Location;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Scene extends JPanel implements ActionListener {
     private final int DELAY = 10;
     public static final int SCENE_MAX_X = 640;
     public static final int SCENE_MAX_Y = 640;
-
+   
     private Location currentLocation;
 
     public enum Locations  {
@@ -36,6 +37,8 @@ public class Scene extends JPanel implements ActionListener {
     }
     
     private boolean startScreen;
+	private Bully bully;
+	private int count;
 
     public Scene() {
     	addKeyListener(new TAdapter());
@@ -43,7 +46,6 @@ public class Scene extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
 
         character = new Character("hero");
-        
         //Add boxes, this will eventually be loaded from some sort of map
         character.setLocation(new PlayerHome());
         
@@ -68,7 +70,7 @@ public class Scene extends JPanel implements ActionListener {
        if(startScreen) {
     	   ImageIcon ii = new ImageIcon("Splash.png");
     	   g2d.drawImage(ii.getImage(),0,0,this);
-
+    	   
 
        } else if (character.getHappiness() > 0) { 
     	     g2d.setFont(new Font("Dialog", 0, 14));
@@ -80,6 +82,7 @@ public class Scene extends JPanel implements ActionListener {
     	     g2d.setFont(new Font("Dialog", 0, 24));
              curL.draw(g, this);
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+             
              
              g2d.setColor(Color.RED);
              g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);

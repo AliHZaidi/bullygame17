@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import game.Box;
+import game.Bully;
 import game.NonPlayableObject;
 
 public class School extends Location {
@@ -33,6 +34,7 @@ public class School extends Location {
 		for (int i = 0; i < 20; i++) {
 			super.map.add(new Box(super.background, 20, i));
         }
+		super.map.add(new Bully(new ImageIcon("bully_front_betweenStep.png").getImage(), 150, 150));
 	}
 
 	public Location getLeft() {

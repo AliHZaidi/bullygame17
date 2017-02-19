@@ -5,8 +5,8 @@ import javax.swing.ImageIcon;
 
 public class NonPlayableObject {
 	
-	private int x;
-    private int y;
+	protected int x;
+    protected int y;
     private Image image;
 
 	public NonPlayableObject(Image image, int x, int y) {
