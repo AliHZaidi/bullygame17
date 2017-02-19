@@ -1,0 +1,29 @@
+Player has happiness level
+Certain tasks change happiness level:
+Tasks that increase happiness:
+	Eating food (minimal)
+	Posting online
+		To post online: player interacts with computer
+		When interacting with computer:
+			You can:
+			post online
+			play a video game
+			do homework
+	Playing video games
+	
+Tasks that decrease happiness:
+	Mean comments on online posts
+	Mean private messages online
+	doing homework
+	getting yelled at by parent for not doing homework
+	etc
+
+When you reach 0 happiness:
+
+You turn into the bully
+Your happiness score is replaced with a score called "void"
+You are told you will win when the void is filled (void = 100)
+Each time you bully/write a mean comment/mean message, your void score++
+When you reach 99 void score, your score no longer increases
+Once you reach 99, writing nice comments/apologizing becomes available
+By doing this option, the void will fill and you win the game

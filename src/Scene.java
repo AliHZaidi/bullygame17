@@ -1,6 +1,9 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,9 +30,6 @@ public class Scene extends JPanel implements ActionListener {
     }
     private boolean startScreen;
 
-
-    public ArrayList<Integer> keysPressed;
-
     public Scene() {
 
         initBoard();
@@ -37,7 +37,6 @@ public class Scene extends JPanel implements ActionListener {
     
     private void initBoard() {
 
-        keysPressed = new ArrayList<Integer>();
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -65,16 +64,20 @@ public class Scene extends JPanel implements ActionListener {
 
     private void doDrawing(Graphics g) {
         
-        Graphics2D g2d = (Graphics2D) g;
+       Graphics2D g2d = (Graphics2D) g;
        
        if(startScreen) {
 
        } else {
-            //Draw location
+             
+             
              character.getLocation().draw(g, this);
-             //Draw character sprites last
-              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+             g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+             g2d.setFont(new Font("Dialog", 0, 24));
+             g2d.setColor(Color.RED);
+             g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
        }        
+
     }
 
     @Override
@@ -99,7 +102,7 @@ public class Scene extends JPanel implements ActionListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            character.keyPressed(e);
+            character.keyPressed(e, character.getLocation().getMap());
         }
     }
 }

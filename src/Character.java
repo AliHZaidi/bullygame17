@@ -42,6 +42,8 @@ public class Character {
     private Integer rSidesCurIx;
     private Integer lSidesCurIx;
     
+    private int happiness;
+    
     private Integer currCurrIx;
     
     // 0 Index stores the orientation counter for the front, 1 index for back
@@ -54,6 +56,7 @@ public class Character {
     	
     	timeSinceOR = 0;
     	curTime = System.currentTimeMillis();
+    	happiness = 100;
     	
     	curORIxs = new short[4];
     	for(int i = 0; i < curORIxs.length; ++i){
@@ -83,6 +86,20 @@ public class Character {
         }
         initCraft();
     }
+    
+    public void decreaseHappiness(int amount){
+    	happiness -= amount;
+    }
+    public void increaseHappiness(int amount){
+    	happiness += amount;
+    }
+    public void decreaseHappiness(){
+    	--happiness;
+    }
+    public void increaseHappiness(){
+    	++happiness;
+    }
+    
     
     private void initCraft() {
         x = Scene.BOARD_MAX_X / 2;
@@ -131,12 +148,13 @@ public class Character {
             x += dx*speed;
     	    y += dy*speed;
         }
-
+    	
         //check if character has left location if so 
     	if (this.x < 0 || this.x > 630 || this.y < 0 || this.y > 640) leave();
     }
 
     private void leave() {
+
         
         
         //Leave left
@@ -162,6 +180,7 @@ public class Character {
             this.y = 10;
             this.location = this.location.getBottom();
         } 
+
     }
     
     /*
@@ -206,11 +225,15 @@ public class Character {
         return curImage;
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e, ArrayList<Box> boxes) {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
+        if (key == KeyEvent.VK_SPACE && this.isNearNPC(boxes)) {
+        	System.out.println("hell yeah d00d");
+        }
+        
+        else if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
             dx = -1;
             leftIsPressed = true;
             curImages = lSides;
@@ -218,7 +241,7 @@ public class Character {
             curCurORIxs = 3;
         }
 
-        if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
+        else if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
             dx = 1;
             rightIsPressed = true;
             curImages = rSides;
@@ -226,7 +249,7 @@ public class Character {
             curCurORIxs = 2;
         }
 
-        if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
+        else if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
             dy = -1;
             upIsPressed = true;
             curImages = backs;
@@ -234,15 +257,13 @@ public class Character {
             curCurORIxs = 1;
         }
 
-        if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
+        else if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
             dy = 1;
             downIsPressed = true;
             curImages = fronts;
             changeImg = true;
             curCurORIxs = 0;
         }
-        
-       // updateSprite();
     }
 
     public void keyReleased(KeyEvent e) {       
@@ -271,22 +292,24 @@ public class Character {
             downIsPressed = false;
             changeImg = false;
         }
-        
-       // updateSprite();
+
     }
+
+	/**
+	 * @return
+	 */
+	public int getHappiness() {
+		return happiness;
+	}
     
-//    private void updateSprite() {
-//    	if (upIsPressed) {
-//    		curImage = backs.get(0);
-//    	}
-//    	else if (downIsPressed) {
-//    		curImage = fronts.get(0);
-//    	}
-//    	else if (leftIsPressed) {
-//    		curImage = lSides.get(0);
-//    	}
-//    	else if (rightIsPressed) {
-//            curImage = rSides.get(0);
-//    	}
-//    }
+
+    private boolean isNearNPC(ArrayList<Box> boxes) {
+    	for (Box b : boxes) {
+            if ((x + 40 > b.getX() && x < b.getX() + 40) && (y + 40 > b.getY() && y < b.getY() + 40)) {
+            	return true;
+            }
+        }
+    	
+    	return false;
+    }
 }
