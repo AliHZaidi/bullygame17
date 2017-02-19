@@ -20,6 +20,9 @@ public class Character {
     private Image curImage;
     private String name;
     private ArrayList<String> imgFileNames;
+
+    //current location of the character
+    private Location location;
     
     private boolean upIsPressed = false;
     private boolean downIsPressed = false;
@@ -75,15 +78,33 @@ public class Character {
         y = 60;
     }
 
+    public Location getLocation() {
+        return this.location;
+    }
 
-    public void move(ArrayList<Box> boxes) {
+    public void setLocation(Location l) {
+        this.location = l;
+    }
+
+
+    public void move() {
     	
 
-        if(!collison(x+dx, y+dy, boxes)) {
+        if(!collison(x+dx, y+dy, this.location.getMap())) {
             x += dx*speed;
     	    y += dy*speed;
         }
-    	
+
+        //check if character has left location if so 
+    	if (this.x < 0 || this.x > 630 || this.y < 0 || this.y > 640) leave();
+    }
+
+    private void leave() {
+        this.location = this.location.getAdjacent();
+        if(this.x < 0) this.x = 630;
+        if(this.x > 640) this.x = 10;
+        if(this.y < 0) this.y = 630;
+        if(this.y > 640) this.y = 10;
     }
     
     /*

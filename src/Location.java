@@ -6,5 +6,6 @@ public abstract class Location {
 
     abstract ArrayList<Box> getMap();
     abstract void draw(Graphics g, JPanel panel);
+    abstract Location getAdjacent();
 
 }

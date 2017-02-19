@@ -3,19 +3,17 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
-public class Home extends Location {
+public class Outside extends Location {
 
     private ArrayList<Box> map;
 
-    public Home() {
+    public Outside() {
         this.map = new ArrayList<Box>();
+        
         for(int i = 0; i < 20; i++) {
-            this.map.add(new Box(i, 0));
-        }
-        for(int i = 1; i < 20; i++) {
             this.map.add(new Box(0, i));
         }
-        for(int i = 1; i < 20; i++) {
+        for(int i = 0; i < 20; i++) {
             this.map.add(new Box(19, i));
         }
     }
@@ -34,6 +32,8 @@ public class Home extends Location {
     }
 
     public Location getAdjacent() {
-        return new Outside();
+        return new Home();
     }
+
+    
 }

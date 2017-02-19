@@ -45,7 +45,7 @@ public class Scene extends JPanel implements ActionListener {
         character = new Character("bully");
         
         //Add boxes, this will eventually be loaded from some sort of map
-        currentLocation = new Home();
+        character.setLocation(new Home());
         
         startScreen = true;
 
@@ -71,7 +71,7 @@ public class Scene extends JPanel implements ActionListener {
 
        } else {
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
-             currentLocation.draw(g, this);
+             character.getLocation().draw(g, this);
     
        }        
     }
@@ -79,7 +79,7 @@ public class Scene extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        character.move(currentLocation.getMap());
+        character.move();
         repaint();  
     }
 
