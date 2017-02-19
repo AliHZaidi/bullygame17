@@ -22,5 +22,8 @@ public abstract class Location {
         
     }
 
-    abstract Location getAdjacent();
+    abstract Location getLeft();
+    abstract Location getRight();
+    abstract Location getTop();
+    abstract Location getBottom();
 }
