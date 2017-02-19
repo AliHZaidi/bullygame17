@@ -27,6 +27,7 @@ public class NonPlayableObject {
         return image;
     }
     public Dialogue getPrompt(Character x, boolean shouldChange){
+    	System.out.println("in super");
     	return null;
     }
 }
