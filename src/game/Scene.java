@@ -91,6 +91,7 @@ public class Scene extends JPanel implements ActionListener {
 			g2d.setColor(Color.BLACK);
 			g2d.drawString("☺ " + character.getHappiness(), 530, 43);
 		}
+
        else{
                creditcounter++;
                if(creditcounter <250)
