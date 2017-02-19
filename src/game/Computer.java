@@ -31,8 +31,8 @@ public class Computer extends NonPlayableObject{
 	public Image getImage(){
 		return img;
 	}
-	public Dialogue getPrompt(Character x, boolean shudChange){
-		if(shudChange){
+	public Dialogue getPrompt(Character x, boolean shouldChange){
+		if(shouldChange){
 			if(position <4)
 			{
 				if(position == 0)
@@ -46,11 +46,8 @@ public class Computer extends NonPlayableObject{
 				return new Dialogue("You have 1 new Message: " + 
 						meanComments[position++] + "\n Your happiness has now decreased");
 			}
-		}else{
-			return new Dialogue("You have 1 new Message: " + 
-					meanComments[position++] + "\n Your happiness has now decreased");
 		}
-		return null;
+		return new Dialogue("");
 	}
 	/**
 	 * 

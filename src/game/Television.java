@@ -17,11 +17,11 @@ public class Television extends NonPlayableObject {
 		return img;
 	}
 	
-	public Dialogue getPrompt(Character x, boolean shudChange){
+	public Dialogue getPrompt(Character x, boolean shouldChange){
 		
 		if(times == 0)
 		{
-			if(shudChange){
+			if(shouldChange){
 				times++;
 				x.increaseHappiness(5);
 			}

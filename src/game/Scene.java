@@ -23,99 +23,126 @@ import java.util.ArrayList;
 
 
 public class Scene extends JPanel implements ActionListener {
+	private Timer timer;
+	private Character character;
+	private final int DELAY = 10;
+	public static final int SCENE_MAX_X = 640;
+	public static final int SCENE_MAX_Y = 640;
 
-    private Timer timer;
-    private Character character;
-    private final int DELAY = 10;
-    public static final int SCENE_MAX_X = 640;
-    public static final int SCENE_MAX_Y = 640;
-   
-    private Location currentLocation;
+	private int creditcounter = 0;
 
-    public enum Locations  {
-        HOME, OUTDOOR, SCHOOL
-    }
-    
-    private boolean startScreen;
-	private Bully bully;
-	private int count;
+	private Location currentLocation;
 
-    public Scene() {
-    	addKeyListener(new TAdapter());
-        setFocusable(true);
-        setBackground(Color.WHITE);
+	public enum Locations  {
+		HOME, OUTDOOR, SCHOOL
+	}
 
-        character = new Character("hero");
-        //Add boxes, this will eventually be loaded from some sort of map
-        character.setLocation(new PlayerHome());
-        
-        startScreen = true;
+	private boolean startScreen;
 
-        timer = new Timer(DELAY, this);
-        timer.start();   
-    }
+	public Scene() {
+		addKeyListener(new TAdapter());
+		setFocusable(true);
+		setBackground(Color.WHITE);
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+		character = new Character("hero");
 
-        doDrawing(g);
+		//Add boxes, this will eventually be loaded from some sort of map
+		character.setLocation(new PlayerHome());
 
-        Toolkit.getDefaultToolkit().sync();
-    }
+		startScreen = true;
 
-    private void doDrawing(Graphics g) {
-       Graphics2D g2d = (Graphics2D) g;
-       
-       if(startScreen) {
-    	   ImageIcon ii = new ImageIcon("Splash.png");
-    	   g2d.drawImage(ii.getImage(),0,0,this);
-    	   
+		timer = new Timer(DELAY, this);
+		timer.start();   
+	}
 
-       } else if (character.getHappiness() > 0) { 
-    	     g2d.setFont(new Font("Dialog", 0, 14));
-    	     Location curL = character.getLocation();
-    	     if(character.getInteractText() != null){
-    	    	 Dialogue dlg = character.getInteractText();
-    	    	 dlg.draw(g2d);
-    	     }
-    	     g2d.setFont(new Font("Dialog", 0, 24));
-             curL.draw(g, this);
-             g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
-             
-             
-             g2d.setColor(Color.RED);
-             g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
-       }
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+
+		doDrawing(g);
+
+		Toolkit.getDefaultToolkit().sync();
+	}
+
+	private void doDrawing(Graphics g) {
+		if (character.isMovingAtAll()) {
+			character.setInteractText(null);
+		}
+		
+		Graphics2D g2d = (Graphics2D) g;
+
+		if(startScreen) {
+			ImageIcon ii = new ImageIcon("Splash.png");
+			g2d.drawImage(ii.getImage(),0,0,this);
+
+		} else if (character.getHappiness() > 0) { 
+			g2d.setFont(new Font("Dialog", 0, 14));
+			Location curL = character.getLocation();
+			if(character.getInteractText() != null){
+				Dialogue dlg = character.getInteractText();
+				dlg.draw(g2d);
+			}
+			g2d.setFont(new Font("Dialog", 0, 24));
+			curL.draw(g, this);
+			g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+			//Draw score
+			g2d.setColor(Color.WHITE);
+			g2d.fillRoundRect(520, 15, 100, 40, 25, 25);
+			g2d.setColor(Color.BLACK);
+			g2d.drawString("☺ " + character.getHappiness(), 530, 43);
+		}
+
+
        else{
-    	  
-    	   
+               creditcounter++;
+               if(creditcounter <250)
+               {
+                   g2d.drawImage(new ImageIcon("credit1.png").getImage(),0,0,this);
+                
+               }
+              
+               if(creditcounter<500 && creditcounter> 251)
+               {
+                   ImageIcon a =new ImageIcon("credit2.png");
+                   g2d.drawImage(a.getImage(),0,0,this);
+               }
+              
+               if(creditcounter >501 && creditcounter < 750)
+               {
+                   g2d.drawImage(new ImageIcon("credit3.png").getImage(),0,0,this);
+               }
+              
+               if(creditcounter > 751)
+               {
+                   g2d.drawImage(new ImageIcon("credit4.png").getImage(),0,0,this);
+               }
        }
+    	   
 
-    }
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
-        character.move();
-        repaint();  
-    }
+		character.move();
+		repaint();  
+	}
 
-    private class TAdapter extends KeyAdapter {
+	private class TAdapter extends KeyAdapter {
 
-        @Override
-        public void keyReleased(KeyEvent e) {
-            
-            if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
-                startScreen = false;
-            }
-            
-            character.keyReleased(e);
-        }
+		@Override
+		public void keyReleased(KeyEvent e) {
 
-        @Override
-        public void keyPressed(KeyEvent e) {
-            character.keyPressed(e, character.getLocation().getMap());
-        }
-    }
+			if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
+				startScreen = false;
+			}
+
+			character.keyReleased(e);
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			character.keyPressed(e, character.getLocation().getMap());
+		}
+	}
 }

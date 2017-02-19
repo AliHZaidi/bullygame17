@@ -204,8 +204,13 @@ public class Character {
     public int getY() {
         return y;
     }
+    
     public Dialogue getInteractText(){
     	return curText;
+    }
+
+    public void setInteractText(Dialogue interactText) {
+    	this.curText = interactText;
     }
 
     public Image getImage() {
@@ -321,5 +326,7 @@ public class Character {
     	return false;
     }
     
-    
+    boolean isMovingAtAll() {
+    	return upIsPressed || downIsPressed || leftIsPressed || rightIsPressed;
+    }
 }

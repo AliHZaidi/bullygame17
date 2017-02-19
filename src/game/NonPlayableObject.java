@@ -26,7 +26,7 @@ public class NonPlayableObject {
     public Image getImage() {
         return image;
     }
-    public Dialogue getPrompt(Character x, boolean shudChange){
+    public Dialogue getPrompt(Character x, boolean shouldChange){
     	return null;
     }
 }
