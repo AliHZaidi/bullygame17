@@ -13,7 +13,7 @@ public class PlayerHome extends Location {
 	
     public PlayerHome() {
         super.map = new ArrayList<NonPlayableObject>();
-        
+        super.background = new ImageIcon("home.png").getImage();
         ImageIcon homeWall = new ImageIcon("box.png");
         for(int i = 0; i < 20; i++) {
             super.map.add(new Box(homeWall.getImage(), i, 0));
@@ -24,10 +24,25 @@ public class PlayerHome extends Location {
         for(int i = 1; i < 20; i++) {
             super.map.add(new Box(homeWall.getImage(), 19, i));
         }
+
+        //add walls for bedroom
+        for(int i = 1; i < 10; i++) {
+            super.map.add(new Box(homeWall.getImage(), i, 6));
+        }
+        super.map.add(new Box(homeWall.getImage(), 9, 1));
+        super.map.add(new Box(homeWall.getImage(), 9, 4));
+        super.map.add(new Box(homeWall.getImage(), 9, 5));
         
-        cpu = new Computer(new ImageIcon("Computer.png").getImage(), 250,200);
+        cpu = new Computer(new ImageIcon("Computer.png").getImage(), 6,1);
         super.map.add(cpu);
-        
+
+        //
+        for(int i = 0; i < 20; i++) {
+            if(i < 8 || i > 12) {
+                super.map.add(new Box(homeWall.getImage(), i, 19));
+            }
+            
+        }
     }
 
     public Computer getCPU(){

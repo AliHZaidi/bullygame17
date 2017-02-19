@@ -17,7 +17,7 @@ public class Computer extends NonPlayableObject{
 	private String[] niceComments;
 	private int position;
 	public Computer(Image img, int x, int y){
-		super(img,x, y);
+		super(img,x*32, y*32);
 		this.img = img;
 		position = 0;
 		meanComments = new String[4];
