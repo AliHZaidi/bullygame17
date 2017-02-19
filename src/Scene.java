@@ -20,6 +20,8 @@ public class Scene extends JPanel implements ActionListener {
     public static final int BOARD_MAX_X = 640;
     public static final int BOARD_MAX_Y = 640;
 
+    private boolean startScreen;
+
 
     public ArrayList<Integer> keysPressed;
 
@@ -49,6 +51,7 @@ public class Scene extends JPanel implements ActionListener {
             boxes.add(new Box(19, i));
         }
         
+        startScreen = true;
 
         timer = new Timer(DELAY, this);
         timer.start();        
@@ -74,17 +77,22 @@ public class Scene extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+       
+       if(startScreen) {
+
+       } else {
+             g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
         
         //draw boxes
         for(Box box : boxes) {
             g2d.drawImage(box.getImage(), box.getX(), box.getY(), this);
         }
-                
+       }        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         character.move(this.boxes);
         repaint();  
     }
@@ -93,6 +101,12 @@ public class Scene extends JPanel implements ActionListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
+            
+            if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
+                System.out.println("Space pressed");
+                startScreen = false;
+            }
+            
             character.keyReleased(e);
         }
 
