@@ -32,6 +32,8 @@ public class Character {
     private boolean leftIsPressed = false;
     private boolean rightIsPressed = false;
     
+    private NonPlayableObject nearbyObj;
+    
     private long curTime;
     
     private boolean changeImg;
@@ -45,7 +47,9 @@ public class Character {
     private Integer rSidesCurIx;
     private Integer lSidesCurIx;
     
-    private int happiness;
+    private Dialouge curText;
+    
+	private int happiness;
     
     private Integer currCurrIx;
     
@@ -205,6 +209,9 @@ public class Character {
     public int getY() {
         return y;
     }
+    public Dialouge getInteractText(){
+    	return curText;
+    }
 
     public Image getImage() {
     	timeSinceOR += System.currentTimeMillis() - curTime;
@@ -233,7 +240,9 @@ public class Character {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_SPACE && this.isNearNPC(arrayList)) {
-        	System.out.println("hell yeah d00d");
+        	if(nearbyObj instanceof Computer){
+        		curText = ((Computer) nearbyObj).getPrompt(this);
+        	}
         }
         
         else if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
@@ -309,10 +318,11 @@ public class Character {
     private boolean isNearNPC(ArrayList<NonPlayableObject> arrayList) {
     	for (NonPlayableObject npo : arrayList) {
             if ((x + 40 > npo.getX() && x < npo.getX() + 40) && (y + 40 > npo.getY() && y < npo.getY() + 40)) {
+            	nearbyObj = npo;
             	return true;
             }
         }
-    	
+    	nearbyObj = null;
     	return false;
     }
     

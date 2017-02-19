@@ -79,14 +79,17 @@ public class Scene extends JPanel implements ActionListener {
 
 
        } else { 
+    	     g2d.setFont(new Font("Dialog", 0, 14));
     	     Location curL = character.getLocation();
-//    	     if(curL instanceof PlayerHome){
-//    	    	 g2d.drawImage(((PlayerHome) curL).getCPU().getImage(), 
-//    	    			 ((PlayerHome) curL).getCPU().getX() , ((PlayerHome) curL).getCPU().getY(), this);
-//    	     }
+    	     if(character.getInteractText() != null){
+    	    	 Dialouge dlg = character.getInteractText();
+    	    	 dlg.draw(g2d);
+    	    	 
+    	     }
+    	     g2d.setFont(new Font("Dialog", 0, 24));
              curL.draw(g, this);
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
-             g2d.setFont(new Font("Dialog", 0, 24));
+             
              g2d.setColor(Color.RED);
              g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
        }        
