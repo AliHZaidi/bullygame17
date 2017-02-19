@@ -28,6 +28,7 @@ public class Scene extends JPanel implements ActionListener {
     private final int DELAY = 10;
     public static final int SCENE_MAX_X = 640;
     public static final int SCENE_MAX_Y = 640;
+    private int creditcounter;
 
     private Location currentLocation;
 
@@ -41,9 +42,8 @@ public class Scene extends JPanel implements ActionListener {
     	addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.WHITE);
-
+        creditcounter = 0;
         character = new Character("hero");
-        
         //Add boxes, this will eventually be loaded from some sort of map
         character.setLocation(new PlayerHome());
         
@@ -85,9 +85,33 @@ public class Scene extends JPanel implements ActionListener {
              g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
        }
        else{
+    	   creditcounter++;
+    	   if(creditcounter <250)
+    	   {
+    		   g2d.drawImage(new ImageIcon("credit1.png").getImage(),0,0,this);
+    		 
+    	   }
+    	   
+    	   if(creditcounter<500 && creditcounter> 251)
+    	   {
+    		   ImageIcon a =new ImageIcon("credit2.png");
+    		   g2d.drawImage(a.getImage(),0,0,this);
+    	   }
+    	   
+    	   if(creditcounter >501 && creditcounter < 750)
+    	   {
+    		   g2d.drawImage(new ImageIcon("credit3.png").getImage(),0,0,this);
+    	   }
+    	   
+    	   if(creditcounter > 751)
+    	   {
+    		   g2d.drawImage(new ImageIcon("credit4.png").getImage(),0,0,this);
+    	   }
+    	   
     	  
     	   
        }
+    	   
 
     }
 
