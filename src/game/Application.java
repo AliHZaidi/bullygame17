@@ -12,7 +12,7 @@ public class Application extends JFrame {
         
         add(new Scene());
 
-        setSize(Scene.BOARD_MAX_X, Scene.BOARD_MAX_Y);
+        setSize(Scene.SCENE_MAX_X, Scene.SCENE_MAX_Y);
 
         setResizable(false);
         
