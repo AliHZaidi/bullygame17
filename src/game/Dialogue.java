@@ -18,7 +18,7 @@ public class Dialogue {
         g2d.setColor(Color.WHITE);
         g2d.fillRoundRect(20, 560, 600, 60, 25, 25);
         g2d.setColor(Color.BLACK);
-        if(text.length() > 80){
+        if(text.length() > 80 || text.contains("\n")){
         	g2d.drawString(this.text.split("\n")[0], 31, 585);
         	g2d.drawString(this.text.split("\n")[1], 30, 600);
         }else{

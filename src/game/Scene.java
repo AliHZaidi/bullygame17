@@ -43,7 +43,7 @@ public class Scene extends JPanel implements ActionListener {
 		character = new Character("hero");
 		
 		// set text initial tutorial dialogue
-		character.setInteractText(new Dialogue("You awaken in your room. Press space to interact with some objects."));
+		character.setInteractText(new Dialogue("You awaken in your room. Press space to interact with some objects.\nPress arrow keys to move around."));
 		startScreen = true;
 
 		timer = new Timer(DELAY, this);
