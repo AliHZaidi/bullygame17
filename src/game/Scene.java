@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -72,6 +74,8 @@ public class Scene extends JPanel implements ActionListener {
        Graphics2D g2d = (Graphics2D) g;
        
        if(startScreen) {
+    	   ImageIcon ii = new ImageIcon("Splash.png");
+    	   g2d.drawImage(ii.getImage(),0,0,this);
 
 
        } else { 
