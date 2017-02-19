@@ -42,7 +42,7 @@ public class Scene extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.WHITE);
 
-        character = new Character("bully");
+        character = new Character("hero");
         
         //Add boxes, this will eventually be loaded from some sort of map
         character.setLocation(new Home());
