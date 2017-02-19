@@ -22,7 +22,8 @@ public class PlayerHome extends Location {
         for(int i = 1; i < 20; i++) {
             super.map.add(new Box(19, i));
         }
-        cpu = new Computer(new ImageIcon("Computer.png").getImage(), 5,5);
+        cpu = new Computer(new ImageIcon("Computer.png").getImage(), 250,200);
+        super.map.add(cpu);
         
     }
 
