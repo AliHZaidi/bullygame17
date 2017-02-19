@@ -31,8 +31,8 @@ public class Computer extends NonPlayableObject{
 	public Image getImage(){
 		return img;
 	}
-	public Dialogue getPrompt(Character x, boolean shudChange){
-		if(shudChange){
+	public Dialogue getPrompt(Character x, boolean shouldChange){
+		if(shouldChange){
 			if(position <4)
 			{
 				if(position == 0)

@@ -22,10 +22,10 @@ public class Basketball extends NonPlayableObject {
 		
 	}
 	
-	public Dialogue getPrompt(Character x, boolean shudChange){
+	public Dialogue getPrompt(Character x, boolean shouldChange){
 		int amount = 20 -i;
-		if(shudChange){
-			
+		if(shouldChange){
+
 			x.increaseHappiness(amount);
 			if(i < 20)
 				i += 5;
