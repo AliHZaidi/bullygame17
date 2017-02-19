@@ -7,9 +7,9 @@ public class Box {
     private int x;
     private int y;
     
-    public Box(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Box(int gridX, int gridY) {
+        this.x = gridX * 32;
+        this.y = gridY * 32;
     }
 
 

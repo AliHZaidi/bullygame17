@@ -15,10 +15,17 @@ public class Scene extends JPanel implements ActionListener {
 
     private Timer timer;
     private Character character;
-    private ArrayList<Box> boxes;
     private final int DELAY = 10;
     public static final int BOARD_MAX_X = 640;
     public static final int BOARD_MAX_Y = 640;
+
+    private Location currentLocation;
+
+
+    public enum Locations  {
+        HOME, OUTDOOR, SCHOOL
+    }
+    private boolean startScreen;
 
 
     public ArrayList<Integer> keysPressed;
@@ -38,18 +45,12 @@ public class Scene extends JPanel implements ActionListener {
         character = new Character("hero");
         
         //Add boxes, this will eventually be loaded from some sort of map
-        boxes = new ArrayList<Box>();
-        boxes.add(new Box(400, 400));
+        currentLocation = new Home();
+        
+        startScreen = true;
 
         timer = new Timer(DELAY, this);
         timer.start();        
-    }
-
-    /*
-    Returns array list of boxes
-    */
-    public ArrayList<Box> getBoxes() {
-        return this.boxes;
     }
 
 
@@ -65,18 +66,20 @@ public class Scene extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
-        
-        //draw boxes
-        for(Box box : boxes) {
-            g2d.drawImage(box.getImage(), box.getX(), box.getY(), this);
-        }
-                
+       
+       if(startScreen) {
+
+       } else {
+             g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+             currentLocation.draw(g, this);
+    
+       }        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        character.move(this.boxes);
+
+        character.move(currentLocation.getMap());
         repaint();  
     }
 
@@ -84,6 +87,12 @@ public class Scene extends JPanel implements ActionListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
+            
+            if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
+                System.out.println("Space pressed");
+                startScreen = false;
+            }
+            
             character.keyReleased(e);
         }
 
