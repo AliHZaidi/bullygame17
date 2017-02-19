@@ -47,7 +47,7 @@ public class Character {
     private Integer rSidesCurIx;
     private Integer lSidesCurIx;
     
-    private Dialouge curText;
+    private Dialogue curText;
     
 	private int happiness;
     
@@ -209,7 +209,7 @@ public class Character {
     public int getY() {
         return y;
     }
-    public Dialouge getInteractText(){
+    public Dialogue getInteractText(){
     	return curText;
     }
 

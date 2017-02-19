@@ -16,7 +16,7 @@ public class Application extends JFrame {
 
         setResizable(false);
         
-        setTitle("Bully Game");
+        setTitle("Messages Matter");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

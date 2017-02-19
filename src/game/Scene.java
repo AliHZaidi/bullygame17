@@ -82,7 +82,7 @@ public class Scene extends JPanel implements ActionListener {
     	     g2d.setFont(new Font("Dialog", 0, 14));
     	     Location curL = character.getLocation();
     	     if(character.getInteractText() != null){
-    	    	 Dialouge dlg = character.getInteractText();
+    	    	 Dialogue dlg = character.getInteractText();
     	    	 dlg.draw(g2d);
     	    	 
     	     }
