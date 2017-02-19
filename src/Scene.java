@@ -18,10 +18,17 @@ public class Scene extends JPanel implements ActionListener {
 
     private Timer timer;
     private Character character;
-    private ArrayList<Box> boxes;
     private final int DELAY = 10;
     public static final int BOARD_MAX_X = 640;
     public static final int BOARD_MAX_Y = 640;
+
+    private Location currentLocation;
+
+
+    public enum Locations  {
+        HOME, OUTDOOR, SCHOOL
+    }
+    private boolean startScreen;
 
     public Scene() {
 
@@ -34,21 +41,15 @@ public class Scene extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.WHITE);
 
-        character = new Character("bully");
+        character = new Character("hero");
         
         //Add boxes, this will eventually be loaded from some sort of map
-        boxes = new ArrayList<Box>();
-        boxes.add(new Box(400, 400));
+        character.setLocation(new Home());
+        
+        startScreen = true;
 
         timer = new Timer(DELAY, this);
         timer.start();        
-    }
-
-    /*
-    Returns array list of boxes
-    */
-    public ArrayList<Box> getBoxes() {
-        return this.boxes;
     }
 
 
@@ -63,26 +64,22 @@ public class Scene extends JPanel implements ActionListener {
 
     private void doDrawing(Graphics g) {
         
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
-        
-        //draw boxes
-        for(Box box : boxes) {
-            g2d.drawImage(box.getImage(), box.getX(), box.getY(), this);
-        }
+       Graphics2D g2d = (Graphics2D) g;
+       
+       if(startScreen) {
 
-        /*
-        g2d.setColor(Color.BLACK);
-        g2d.fill3DRect(32, BOARD_MAX_Y - 128, BOARD_MAX_X - 70, 64, true);
-        g2d.setColor(Color.WHITE);
-        g2d.setFont(new Font("Comic Sans", Font.BOLD, 30));
-        g2d.drawString("Cal sux", 40, BOARD_MAX_Y - 96);
-        */
+       } else {
+            //Draw location
+             character.getLocation().draw(g, this);
+             //Draw character sprites last
+              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+       }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        character.move(this.boxes);
+
+        character.move();
         repaint();  
     }
 
@@ -90,12 +87,18 @@ public class Scene extends JPanel implements ActionListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
+            
+            if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
+                System.out.println("Space pressed");
+                startScreen = false;
+            }
+            
             character.keyReleased(e);
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            character.keyPressed(e, boxes);
+            character.keyPressed(e, character.getLocation().getMap());
         }
     }
 }

@@ -11,4 +11,4 @@ default:
 classes: $(CLASSES:.java=.class)
 
 run:
-	java -classpath bin/ MovingSpriteEx	
+	java -classpath bin/ Application	
