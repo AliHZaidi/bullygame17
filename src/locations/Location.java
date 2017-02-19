@@ -5,25 +5,25 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import game.Box;
+import game.NonPlayableObject;
 
 import java.awt.Image;
 
 public abstract class Location {
-    public ArrayList<Box> map;
+    public ArrayList<NonPlayableObject> map;
     public Image background;
 
-    public ArrayList<Box> getMap() {
+    public ArrayList<NonPlayableObject> getMap() {
         return map;
     }
     
     public void draw(Graphics g, JPanel panel) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.background, 0, 0, panel);
-         //draw boxes
-        for(Box box : this.map) {
-            g2d.drawImage(box.getImage(), box.getX(), box.getY(), panel);
-        }
-        
+        // draw boxes
+        for(NonPlayableObject npo : this.map) {
+            g2d.drawImage(npo.getImage(), npo.getX(), npo.getY(), panel);
+        }   
     }
 
     public abstract Location getLeft();

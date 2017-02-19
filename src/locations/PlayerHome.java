@@ -3,13 +3,14 @@ import java.util.ArrayList;
 
 import game.Box;
 import game.Computer;
+import game.NonPlayableObject;
 
 public class PlayerHome extends Location {
 	
 	private Computer cpu;
 	
     public PlayerHome() {
-        this.map = new ArrayList<Box>();
+        this.map = new ArrayList<NonPlayableObject>();
         for(int i = 0; i < 20; i++) {
             super.map.add(new Box(i, 0));
         }
