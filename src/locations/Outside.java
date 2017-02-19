@@ -1,5 +1,8 @@
+package locations;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+
+import game.Box;
 
 public class Outside extends Location {
 
@@ -15,7 +18,16 @@ public class Outside extends Location {
         }
     }
 
-    public Location getAdjacent() {
-        return new Home();
-    }    
+    public Location getLeft() {
+        return new PlayerHome();
+    }
+    public Location getRight() {
+        return new PlayerHome();
+    }  
+    public Location getTop() {
+        return new PlayerHome();
+    }  
+    public Location getBottom() {
+        return new PlayerHome();
+    }      
 }

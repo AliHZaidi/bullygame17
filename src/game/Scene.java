@@ -1,3 +1,4 @@
+package game;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,6 +12,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import locations.PlayerHome;
+import locations.Location;
+
 import java.util.ArrayList;
 
 
@@ -44,7 +49,7 @@ public class Scene extends JPanel implements ActionListener {
         character = new Character("hero");
         
         //Add boxes, this will eventually be loaded from some sort of map
-        character.setLocation(new Home());
+        character.setLocation(new PlayerHome());
         
         startScreen = true;
 
@@ -68,10 +73,10 @@ public class Scene extends JPanel implements ActionListener {
        
        if(startScreen) {
 
-       } else {
-             
-             
-             character.getLocation().draw(g, this);
+
+       } else { 
+    	     Location curL = character.getLocation();
+             curL.draw(g, this);
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
              g2d.setFont(new Font("Dialog", 0, 24));
              g2d.setColor(Color.RED);
@@ -93,7 +98,6 @@ public class Scene extends JPanel implements ActionListener {
         public void keyReleased(KeyEvent e) {
             
             if(startScreen && e.getKeyCode() == KeyEvent.VK_SPACE) {
-                System.out.println("Space pressed");
                 startScreen = false;
             }
             
