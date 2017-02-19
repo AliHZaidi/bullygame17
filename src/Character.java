@@ -42,6 +42,8 @@ public class Character {
     private Integer rSidesCurIx;
     private Integer lSidesCurIx;
     
+    private int happiness;
+    
     private Integer currCurrIx;
     
     // 0 Index stores the orientation counter for the front, 1 index for back
@@ -54,6 +56,7 @@ public class Character {
     	
     	timeSinceOR = 0;
     	curTime = System.currentTimeMillis();
+    	happiness = 100;
     	
     	curORIxs = new short[4];
     	for(int i = 0; i < curORIxs.length; ++i){
@@ -83,6 +86,20 @@ public class Character {
         }
         initCraft();
     }
+    
+    public void decreaseHappiness(int amount){
+    	happiness -= amount;
+    }
+    public void increaseHappiness(int amount){
+    	happiness += amount;
+    }
+    public void decreaseHappiness(){
+    	--happiness;
+    }
+    public void increaseHappiness(){
+    	++happiness;
+    }
+    
     
     private void initCraft() {
         x = Scene.BOARD_MAX_X / 2;
@@ -252,21 +269,14 @@ public class Character {
             changeImg = false;
         }
         
-       // updateSprite();
     }
+
+	/**
+	 * @return
+	 */
+	public int getHappiness() {
+		return happiness;
+	}
     
-//    private void updateSprite() {
-//    	if (upIsPressed) {
-//    		curImage = backs.get(0);
-//    	}
-//    	else if (downIsPressed) {
-//    		curImage = fronts.get(0);
-//    	}
-//    	else if (leftIsPressed) {
-//    		curImage = lSides.get(0);
-//    	}
-//    	else if (rightIsPressed) {
-//            curImage = rSides.get(0);
-//    	}
-//    }
+
 }

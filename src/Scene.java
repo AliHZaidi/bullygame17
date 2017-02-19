@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -71,8 +72,11 @@ public class Scene extends JPanel implements ActionListener {
 
        } else {
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+             
              character.getLocation().draw(g, this);
-    
+             g2d.setFont(new Font("Dialog", 0, 24));
+             g2d.setColor(Color.RED);
+             g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
        }        
     }
 
