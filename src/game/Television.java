@@ -4,29 +4,31 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Television extends Box {
+public class Television extends NonPlayableObject {
 	private Image img;
-	private String[] niceComments;
-	public Television(int x, int y){
-		super(x,y);
-		img = new ImageIcon("Television.png").getImage();
-		niceComments = new String[3];
-		niceComments[0] = "This just in, the Badgers win the Championship";
-		niceComments[1] = "This just in, world hunger is gone";
-		niceComments[2] = "This just in, Messages Matter wins MadHacks";
+	int times;
+	public Television(String z, int x, int y){
+		super(new ImageIcon(z).getImage(),x,y);
+		img = new ImageIcon(z).getImage();
+		times = 0;
 	}
 	
 	public Image getImage(){
 		return img;
 	}
 	
-	public String getPrompt(){
-		return "Would you like to: /n"
-				+ "1) Watch some TV\n" ;
-	}
-	
-	public String getNiceComment(){
-		return niceComments[(int) Math.random() * 3];
+	public Dialouge getPrompt(Character x){
+		if(times == 0)
+		{
+			times++;
+			x.increaseHappiness(5);
+			return new Dialouge("You watch some tv and " + 
+			  "\n your happiness has now increased by 5");
+		}
+			return new Dialouge("Sorry, the TV is broken" +
+					"\n ,maybe go look at your computer");
+		
+		
 	}
 	
 }

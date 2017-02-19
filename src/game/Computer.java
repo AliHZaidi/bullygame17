@@ -15,22 +15,16 @@ public class Computer extends NonPlayableObject{
 	private Image img;
 	private String[] meanComments;
 	private String[] niceComments;
+	private int position;
 	public Computer(Image img, int x, int y){
 		super(img,x, y);
 		this.img = img;
-		
-		meanComments = new String[5];
+		position = 0;
+		meanComments = new String[4];
 		meanComments[0] = "Wow that's so dumb! UR AN IDIOT XD";
-		meanComments[1] = "Yo mama so fat she fell in the grand canyon and got stuck!";
-		meanComments[2] = "ur so ugly that when u tried to join an ugly contest they said, "
-							+ "\"Sorry, no professionals.\"";
-		meanComments[3] = "You should go die!";
-		meanComments[4] = "YOU SUCK BIG TIME GO AWAY!";
-		
-		niceComments = new String[3];
-		niceComments[0] = "Wow that's so cool! Good for you!";
-		niceComments[1] = "I really look up to you, wanna hang out sometime?";
-		niceComments[2] = "Have a great day! Really enjoyed reading that :)";
+		meanComments[1] = "LOL you're so ugly!";
+		meanComments[2] = "NO ONE LOVES YOU";
+		meanComments[3] = "JUST KILL YOURSELF";
 		
 	}
 	@Override
@@ -38,9 +32,20 @@ public class Computer extends NonPlayableObject{
 		return img;
 	}
 	public Dialouge getPrompt(Character x){
-		x.decreaseHappiness(10);
+		if(position <4)
+		{
+		if(position == 0)
+			x.decreaseHappiness(15);
+		else if(position == 1)
+			x.decreaseHappiness( 25);
+		else if(position == 2)
+			x.decreaseHappiness(35);
+		else if(position == 3)
+			x.decreaseHappiness(45);
 		return new Dialouge("You have 1 new Message: " + 
-		meanComments[(int) Math.random() * 4] + "\n Your happiness has now decreased");
+		meanComments[position++] + "\n Your happiness has now decreased");
+		}
+		return null;
 	}
 	/**
 	 * 

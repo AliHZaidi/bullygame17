@@ -29,6 +29,6 @@ public class Outside extends Location {
         return new PlayerHome();
     }  
     public Location getBottom() {
-        return new PlayerHome();
+        return new FriendHome();
     }      
 }

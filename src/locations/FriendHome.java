@@ -1,14 +1,16 @@
 package locations;
 
 import java.util.ArrayList;
-
+import game.NonPlayableObject;
 import game.Box;
+import game.Television;
 
 public class FriendHome extends Location {
 
-	
+	private Television tv;
     public FriendHome() {
-        this.map = new ArrayList<Box>();
+    	tv = new Television("Television.png",250,200);
+        this.map = new ArrayList<NonPlayableObject>();
         for(int i = 0; i < 20; i++) {
             super.map.add(new Box(i, 19));
         }
@@ -18,6 +20,12 @@ public class FriendHome extends Location {
         for(int i = 1; i < 20; i++) {
             super.map.add(new Box(19, i));
         }
+        map.add(tv);
+    }
+    
+    public Television getTelevision()
+    {
+    	return tv;
     }
 
     public Location getLeft() {
