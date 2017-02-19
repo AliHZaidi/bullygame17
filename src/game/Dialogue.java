@@ -5,7 +5,6 @@ import java.awt.Color;
 
 public class Dialogue {
 
-
     private String text;
 
     Dialogue(String input) {
