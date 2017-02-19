@@ -1,15 +1,18 @@
 package locations;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import game.Box;
 import game.Computer;
+import game.NonPlayableObject;
 
 public class PlayerHome extends Location {
 	
 	private Computer cpu;
 	
     public PlayerHome() {
-        this.map = new ArrayList<Box>();
+        this.map = new ArrayList<NonPlayableObject>();
         for(int i = 0; i < 20; i++) {
             super.map.add(new Box(i, 0));
         }
@@ -19,8 +22,9 @@ public class PlayerHome extends Location {
         for(int i = 1; i < 20; i++) {
             super.map.add(new Box(19, i));
         }
-        cpu = new Computer(5,5);
+        cpu = new Computer(new ImageIcon("Computer.png").getImage(), 250,200);
         super.map.add(cpu);
+        
     }
 
     public Computer getCPU(){

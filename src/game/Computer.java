@@ -11,13 +11,13 @@ import javax.swing.ImageIcon;
  * @author Matt
  *
  */
-public class Computer extends Box{
+public class Computer extends NonPlayableObject{
 	private Image img;
 	private String[] meanComments;
 	private String[] niceComments;
-	public Computer(int x, int y){
-		super(x,y);
-		img = new ImageIcon("Computer.png").getImage();
+	public Computer(Image img, int x, int y){
+		super(img,x, y);
+		this.img = img;
 		
 		meanComments = new String[5];
 		meanComments[0] = "Wow that's so dumb! UR AN IDIOT XD";
@@ -25,7 +25,7 @@ public class Computer extends Box{
 		meanComments[2] = "ur so ugly that when u tried to join an ugly contest they said, "
 							+ "\"Sorry, no professionals.\"";
 		meanComments[3] = "You should go die!";
-		meanComments[4] = "this is SO lame :/";
+		meanComments[4] = "YOU SUCK BIG TIME GO AWAY!";
 		
 		niceComments = new String[3];
 		niceComments[0] = "Wow that's so cool! Good for you!";
@@ -37,11 +37,10 @@ public class Computer extends Box{
 	public Image getImage(){
 		return img;
 	}
-	public String getPrompt(){
-		return "Would you like to: /n"
-				+ "1) Play a computer game\n"
-				+ "2) Do homework\n"
-				+ "3) Post Online\n";
+	public Dialouge getPrompt(Character x){
+		x.decreaseHappiness(10);
+		return new Dialouge("You have 1 new Message: " + 
+		meanComments[(int) Math.random() * 4] + "\n Your happiness has now decreased");
 	}
 	/**
 	 * 
