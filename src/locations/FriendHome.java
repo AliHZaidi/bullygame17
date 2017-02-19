@@ -12,7 +12,9 @@ public class FriendHome extends Location {
 
 	private Television tv;
     public FriendHome() {
-    	tv = new Television("Television.png",250,200);
+
+        super.background = new ImageIcon("fHome.png").getImage();
+    	tv = new Television("Television.png",3,12);
         this.map = new ArrayList<NonPlayableObject>();
         ImageIcon homeWall = new ImageIcon("box.png");
         for(int i = 0; i < 20; i++) {
@@ -32,6 +34,15 @@ public class FriendHome extends Location {
             }
             
         }
+
+        //bedroom
+        for(int i = 18; i > 11; i--) {
+            
+                super.map.add(new Box(homeWall.getImage(), 13, i));   
+            
+        }
+        super.map.add(new Box(homeWall.getImage(), 14, 12));
+        super.map.add(new Box(homeWall.getImage(), 15, 12));
 
         map.add(tv);
     }

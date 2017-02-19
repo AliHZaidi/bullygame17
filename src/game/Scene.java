@@ -73,7 +73,6 @@ public class Scene extends JPanel implements ActionListener {
 			ImageIcon ii = new ImageIcon("Splash.png");
 			g2d.drawImage(ii.getImage(),0,0,this);
 
-
 		} else if (character.getHappiness() > 0) { 
 			g2d.setFont(new Font("Dialog", 0, 14));
 			Location curL = character.getLocation();
@@ -85,13 +84,28 @@ public class Scene extends JPanel implements ActionListener {
 			curL.draw(g, this);
 			g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
 
-			g2d.setColor(Color.RED);
-			g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
-		}
-		else{
+       } else if (character.getHappiness() > 0) { 
+    	     g2d.setFont(new Font("Dialog", 0, 14));
+    	     Location curL = character.getLocation();
+    	     if(character.getInteractText() != null){
+    	    	 Dialogue dlg = character.getInteractText();
+    	    	 dlg.draw(g2d);
+    	     }
+    	     g2d.setFont(new Font("Dialog", 0, 24));
+             curL.draw(g, this);
+             g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+             
 
-
-		}
+             //Draw score
+             g2d.setColor(Color.WHITE);
+             g2d.fillRoundRect(520, 15, 100, 40, 25, 25);
+             g2d.setColor(Color.BLACK);
+             g2d.drawString("☺ " + character.getHappiness(), 530, 43);
+       }
+       else {
+    	  
+    	   
+       }
 
 	}
 
