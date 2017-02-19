@@ -36,19 +36,19 @@ public class School extends Location {
         }
 	}
 
-	public Location getLeft() {
-		return new Outside();
+	public String getLeft() {
+		return "outside";
 	}
 
-	public Location getRight() {
+	public String getRight() {
 		return null;
 	}
 
-	public Location getTop() {
+	public String getTop() {
 		return null;
 	}
 
-	public Location getBottom() {
+	public String getBottom() {
 		return null;
 	}
 

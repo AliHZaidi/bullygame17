@@ -15,8 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import locations.PlayerHome;
-import locations.Location;
+import locations.*;
+
 
 import java.util.ArrayList;
 
@@ -33,10 +33,6 @@ public class Scene extends JPanel implements ActionListener {
 
 	private Location currentLocation;
 
-	public enum Locations  {
-		HOME, OUTDOOR, SCHOOL
-	}
-
 	private boolean startScreen;
 
 	public Scene() {
@@ -47,7 +43,7 @@ public class Scene extends JPanel implements ActionListener {
 		character = new Character("hero");
 
 		//Add boxes, this will eventually be loaded from some sort of map
-		character.setLocation(new PlayerHome());
+		
 
 		startScreen = true;
 

@@ -26,8 +26,8 @@ public abstract class Location {
         }   
     }
 
-    public abstract Location getLeft();
-    public abstract Location getRight();
-    public abstract Location getTop();
-    public abstract Location getBottom();
+    public abstract String getLeft();
+    public abstract String getRight();
+    public abstract String getTop();
+    public abstract String getBottom();
 }

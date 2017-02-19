@@ -49,18 +49,18 @@ public class PlayerHome extends Location {
     	return cpu;
     }
 
-    public Location getLeft() {
+    public String getLeft() {
         return null;
     }
     
-    public Location getRight() {
+    public String getRight() {
         return null;
     }  
-    public Location getTop() {
+    public String getTop() {
         return null;
     }  
-    public Location getBottom() {
-        return new Outside();
+    public String getBottom() {
+        return "outside";
     }     
    
 }

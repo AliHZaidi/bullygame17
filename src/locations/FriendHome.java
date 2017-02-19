@@ -52,17 +52,17 @@ public class FriendHome extends Location {
     	return tv;
     }
 
-    public Location getLeft() {
+    public String getLeft() {
         return null;
     }
     
-    public Location getRight() {
+    public String getRight() {
         return null;
     }  
-    public Location getTop() {
-        return new Outside();
+    public String getTop() {
+        return "outside";
     }  
-    public Location getBottom() {
+    public String getBottom() {
         return null;
     }     
 

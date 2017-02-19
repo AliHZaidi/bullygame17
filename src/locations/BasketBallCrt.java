@@ -36,32 +36,32 @@ public class BasketBallCrt extends Location {
 	 * @see locations.Location#getLeft()
 	 */
 	@Override
-	public Location getLeft() {
+	public String getLeft() {
 		
 		return null;
 	}
 
 	/* (non-Javadoc)
-	 * @see locations.Location#getRight()
+	 * @see Strings.String#getRight()
 	 */
 	@Override
-	public Location getRight() {
-		return new Outside();
+	public String getRight() {
+		return "outside";
 	}
 
 	/* (non-Javadoc)
-	 * @see locations.Location#getTop()
+	 * @see Strings.String#getTop()
 	 */
 	@Override
-	public Location getTop() {
+	public String getTop() {
 		return null;
 	}
 
 	/* (non-Javadoc)
-	 * @see locations.Location#getBottom()
+	 * @see Strings.String#getBottom()
 	 */
 	@Override
-	public Location getBottom() {
+	public String getBottom() {
 		return null;
 	}
 

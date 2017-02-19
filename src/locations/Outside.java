@@ -28,16 +28,16 @@ public class Outside extends Location {
         }
     }
 
-    public Location getLeft() {
-        return new BasketBallCrt();
+    public String getLeft() {
+        return "court";
     }
-    public Location getRight() {
-        return new School();
+    public String getRight() {
+        return "school";
     }  
-    public Location getTop() {
-        return new PlayerHome();
+    public String getTop() {
+        return "home";
     }  
-    public Location getBottom() {
-        return new FriendHome();
+    public String getBottom() {
+        return "pHome";
     }      
 }

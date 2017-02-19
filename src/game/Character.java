@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import locations.Location;
+import locations.*;
 
 public class Character {
 	
@@ -46,6 +46,8 @@ public class Character {
     private Integer backsCurIx;
     private Integer rSidesCurIx;
     private Integer lSidesCurIx;
+
+    private World world;
     
     private Dialogue curText;
     
@@ -61,6 +63,10 @@ public class Character {
     
     public Character(String name) {
     	
+        world = new World();
+
+        this.location = world.home;
+
     	timeSinceOR = 0;
     	curTime = System.currentTimeMillis();
     	happiness = 100;
@@ -158,30 +164,45 @@ public class Character {
     private void leave() {
 
         
-        
+        String newLoc = "";
         //Leave left
         if(this.x < 0) {
             this.x = 630;
-            this.location = this.location.getLeft();
+            
+            newLoc = this.location.getLeft();
         }
 
         //Leave right 
         if(this.x > 640) {
             this.x = 10;
-            this.location = this.location.getRight();
+            newLoc = this.location.getRight();
         } 
 
         //Leave top
         if(this.y < 0) {
             this.y = 630;
-            this.location = this.location.getTop();
+            newLoc = this.location.getTop();
         } 
 
         //Leave bottom
         if(this.y > 640) {
             this.y = 10;
-            this.location = this.location.getBottom();
-        } 
+            newLoc= this.location.getBottom();
+        }
+
+        if(newLoc.equals("home")) {
+            this.location = world.home;
+        } else if (newLoc.equals("court")) {
+            this.location = world.court;
+        } else if(newLoc.equals("outside")) {
+            this.location = world.outside;
+        } else if(newLoc.equals("school")) {
+            this.location = world.school;
+        } else if(newLoc.equals("pHome")) {
+            this.location = world.pHome;
+        }
+
+
 
     }
     
