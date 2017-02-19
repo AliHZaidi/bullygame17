@@ -9,6 +9,7 @@ public class Character {
 	
     private int dx;
     private int dy;
+    private int speed;
     private int x;
     private int y;
     private ArrayList<Image> fronts;
@@ -26,6 +27,8 @@ public class Character {
     private boolean rightIsPressed = false;
     
     public Character(String name) {
+
+        speed = 2;
 
         fronts = new ArrayList<Image>();
         backs = new ArrayList<Image>();
@@ -77,24 +80,10 @@ public class Character {
     	
 
         if(!collison(x+dx, y+dy, boxes)) {
-            x += dx;
-    	    y += dy;
+            x += dx*speed;
+    	    y += dy*speed;
         }
     	
-    	
-    	if (x <= 10) {
-    		x = 10;
-    	}
-    	else if (x >= Scene.BOARD_MAX_X - 64) {
-    		x = Scene.BOARD_MAX_X - 64;
-    	}
-    	
-    	if (y <= 10) {
-    		y = 10;
-    	}
-    	else if (y >= Scene.BOARD_MAX_Y - 96) {
-    		y = Scene.BOARD_MAX_Y - 96;
-    	}
     }
     
     /*

@@ -39,7 +39,16 @@ public class Scene extends JPanel implements ActionListener {
         
         //Add boxes, this will eventually be loaded from some sort of map
         boxes = new ArrayList<Box>();
-        boxes.add(new Box(400, 400));
+        for(int i = 0; i < 20; i++) {
+            boxes.add(new Box(i, 0));
+        }
+        for(int i = 1; i < 20; i++) {
+            boxes.add(new Box(0, i));
+        }
+        for(int i = 1; i < 20; i++) {
+            boxes.add(new Box(19, i));
+        }
+        
 
         timer = new Timer(DELAY, this);
         timer.start();        
