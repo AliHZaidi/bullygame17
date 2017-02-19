@@ -6,9 +6,9 @@ JC = javac
 
 
 default:
-	javac **/*.java -d bin/
+	javac src/game/*.java src/locations/*.java -d bin/
 
 classes: $(CLASSES:.java=.class)
 
 run:
-	java -classpath bin/ Application	
+	java -classpath bin/ game.Application	
