@@ -1,13 +1,14 @@
+package game;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
-public class Dialouge {
+public class Dialogue {
 
 
     private String text;
 
-    Dialouge(String input) {
+    Dialogue(String input) {
         text = input;
     }
 
@@ -18,6 +19,12 @@ public class Dialouge {
         g2d.setColor(Color.WHITE);
         g2d.fillRoundRect(20, 560, 600, 60, 25, 25);
         g2d.setColor(Color.BLACK);
-        g2d.drawString("Test", 30, 600);
+        if(text.length() > 80){
+        	g2d.drawString(this.text.split("\n")[0], 31, 585);
+        	g2d.drawString(this.text.split("\n")[1], 30, 600);
+        }else{
+        	g2d.drawString(this.text, 30, 600);
+        }
+        
     }
 }

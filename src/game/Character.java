@@ -32,6 +32,8 @@ public class Character {
     private boolean leftIsPressed = false;
     private boolean rightIsPressed = false;
     
+    private NonPlayableObject nearbyObj;
+    
     private long curTime;
     
     private boolean changeImg;
@@ -45,7 +47,9 @@ public class Character {
     private Integer rSidesCurIx;
     private Integer lSidesCurIx;
     
-    private int happiness;
+    private Dialogue curText;
+    
+	private int happiness;
     
     private Integer currCurrIx;
     
@@ -70,7 +74,6 @@ public class Character {
     	backsCurIx = new Integer(0);
         rSidesCurIx = new Integer(0);
         lSidesCurIx = new Integer(0);
-        
 
         speed = 2;
 
@@ -87,26 +90,9 @@ public class Character {
         		imgFileNames.add(files[i].getName());
         	}
         }
-        initCraft();
-    }
-    
-    public void decreaseHappiness(int amount){
-    	happiness -= amount;
-    }
-    public void increaseHappiness(int amount){
-    	happiness += amount;
-    }
-    public void decreaseHappiness(){
-    	--happiness;
-    }
-    public void increaseHappiness(){
-    	++happiness;
-    }
-    
-    
-    private void initCraft() {
-        x = Scene.BOARD_MAX_X / 2;
-        y = Scene.BOARD_MAX_Y / 2;
+
+        x = Scene.SCENE_MAX_X / 2;
+        y = Scene.SCENE_MAX_Y / 2;
         
     	for(String e : imgFileNames){
         	if(e.contains("back") && e.contains(name)){
@@ -133,6 +119,19 @@ public class Character {
         curCurORIxs = 0;
         x = 40;
         y = 60;
+    }
+    
+    public void decreaseHappiness(int amount){
+    	happiness -= amount;
+    }
+    public void increaseHappiness(int amount){
+    	happiness += amount;
+    }
+    public void decreaseHappiness(){
+    	--happiness;
+    }
+    public void increaseHappiness(){
+    	++happiness;
     }
 
     public Location getLocation() {
@@ -205,6 +204,9 @@ public class Character {
     public int getY() {
         return y;
     }
+    public Dialogue getInteractText(){
+    	return curText;
+    }
 
     public Image getImage() {
     	timeSinceOR += System.currentTimeMillis() - curTime;
@@ -233,7 +235,9 @@ public class Character {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_SPACE && this.isNearNPC(arrayList)) {
-        	System.out.println("hell yeah d00d");
+        	if(nearbyObj instanceof Computer){
+        		curText = ((Computer) nearbyObj).getPrompt(this);
+        	}
         }
         
         else if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
@@ -309,10 +313,11 @@ public class Character {
     private boolean isNearNPC(ArrayList<NonPlayableObject> arrayList) {
     	for (NonPlayableObject npo : arrayList) {
             if ((x + 40 > npo.getX() && x < npo.getX() + 40) && (y + 40 > npo.getY() && y < npo.getY() + 40)) {
+            	nearbyObj = npo;
             	return true;
             }
         }
-    	
+    	nearbyObj = null;
     	return false;
     }
     
