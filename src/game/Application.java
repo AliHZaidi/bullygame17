@@ -5,12 +5,7 @@ import javax.swing.JFrame;
 public class Application extends JFrame {
 
     public Application() {
-        initUI();
-    }
-    
-    private void initUI() {
-        
-        add(new Scene());
+    	add(new Scene());
 
         setSize(Scene.SCENE_MAX_X, Scene.SCENE_MAX_Y);
 
