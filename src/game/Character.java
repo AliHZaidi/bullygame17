@@ -317,14 +317,17 @@ public class Character {
 
     private boolean isNearNPC(ArrayList<NonPlayableObject> arrayList) {
     	for (NonPlayableObject npo : arrayList) {
-            if ((x + 40 > npo.getX() && x < npo.getX() + 40) && (y + 40 > npo.getY() && y < npo.getY() + 40)) {
-            	nearbyObj = npo;
-            	return true;
-            }
-        }
+    		if (!(npo instanceof Box)) {
+    			if ((x + 40 > npo.getX() && x < npo.getX() + 40) && (y + 40 > npo.getY() && y < npo.getY() + 40)) {
+    				nearbyObj = npo;
+    				return true;
+    			}
+    		}
+    	}
     	nearbyObj = null;
     	return false;
     }
+    
     
     boolean isMovingAtAll() {
     	return upIsPressed || downIsPressed || leftIsPressed || rightIsPressed;

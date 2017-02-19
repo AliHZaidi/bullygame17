@@ -2,13 +2,13 @@ package game;
 
 import java.awt.Image;
 
-public class Locker extends Box {
+public class Locker extends NonPlayableObject {
 
 	public Locker(Image image, int x, int y) {
-		super(image, x, y);
+		super(image, x*32, y*32);
 	}
 
-	public Dialogue getPrompt(Character x, boolean shouldChange) {
+    public Dialogue getPrompt(Character x, boolean shouldChange){
 		if (shouldChange) {
 			x.decreaseHappiness(35);
 		}
