@@ -1,7 +1,11 @@
+package locations;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+
+import game.Box;
+
 import java.awt.Image;
 
 public abstract class Location {
@@ -22,8 +26,8 @@ public abstract class Location {
         
     }
 
-    abstract Location getLeft();
-    abstract Location getRight();
-    abstract Location getTop();
-    abstract Location getBottom();
+    public abstract Location getLeft();
+    public abstract Location getRight();
+    public abstract Location getTop();
+    public abstract Location getBottom();
 }

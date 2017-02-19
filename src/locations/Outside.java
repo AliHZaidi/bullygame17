@@ -1,5 +1,8 @@
+package locations;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+
+import game.Box;
 
 public class Outside extends Location {
 
