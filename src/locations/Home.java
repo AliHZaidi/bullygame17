@@ -1,4 +1,7 @@
+package locations;
 import java.util.ArrayList;
+
+import game.Box;
 
 public class Home extends Location {
 

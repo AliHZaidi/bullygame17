@@ -1,9 +1,12 @@
+package game;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+
+import locations.Location;
 
 public class Character {
 	
