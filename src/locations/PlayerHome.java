@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 import game.Box;
 
-public class Home extends Location {
+public class PlayerHome extends Location {
 
-    public Home() {
+    public PlayerHome() {
         this.map = new ArrayList<Box>();
         for(int i = 0; i < 20; i++) {
             super.map.add(new Box(i, 0));
@@ -19,13 +19,13 @@ public class Home extends Location {
     }
 
     public Location getLeft() {
-        return new Outside();
+        return null;
     }
     public Location getRight() {
-        return new Outside();
+        return null;
     }  
     public Location getTop() {
-        return new Outside();
+        return null;
     }  
     public Location getBottom() {
         return new Outside();

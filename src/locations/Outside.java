@@ -19,15 +19,15 @@ public class Outside extends Location {
     }
 
     public Location getLeft() {
-        return new Home();
+        return new PlayerHome();
     }
     public Location getRight() {
-        return new Home();
+        return new PlayerHome();
     }  
     public Location getTop() {
-        return new Home();
+        return new PlayerHome();
     }  
     public Location getBottom() {
-        return new Home();
+        return new PlayerHome();
     }      
 }

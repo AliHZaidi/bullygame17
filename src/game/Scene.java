@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import locations.Home;
+import locations.PlayerHome;
 import locations.Location;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class Scene extends JPanel implements ActionListener {
         character = new Character("hero");
         
         //Add boxes, this will eventually be loaded from some sort of map
-        character.setLocation(new Home());
+        character.setLocation(new PlayerHome());
         
         startScreen = true;
 
