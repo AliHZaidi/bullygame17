@@ -11,13 +11,13 @@ import javax.swing.ImageIcon;
  * @author Matt
  *
  */
-public class Computer extends Box{
+public class Computer extends NonPlayableObject{
 	private Image img;
 	private String[] meanComments;
 	private String[] niceComments;
-	public Computer(int x, int y){
-		super(x,y);
-		img = new ImageIcon("Computer.png").getImage();
+	public Computer(Image img, int x, int y){
+		super(img,x, y);
+		this.img = img;
 		
 		meanComments = new String[5];
 		meanComments[0] = "Wow that's so dumb! UR AN IDIOT XD";
