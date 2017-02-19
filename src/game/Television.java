@@ -8,7 +8,7 @@ public class Television extends NonPlayableObject {
 	private Image img;
 	int times;
 	public Television(String z, int x, int y){
-		super(new ImageIcon(z).getImage(),x,y);
+		super(new ImageIcon(z).getImage(),x*32,y*32);
 		img = new ImageIcon(z).getImage();
 		times = 0;
 	}
