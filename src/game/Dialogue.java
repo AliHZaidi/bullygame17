@@ -3,12 +3,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
-public class Dialouge {
+public class Dialogue {
 
 
     private String text;
 
-    Dialouge(String input) {
+    Dialogue(String input) {
         text = input;
     }
 

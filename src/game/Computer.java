@@ -37,9 +37,9 @@ public class Computer extends NonPlayableObject{
 	public Image getImage(){
 		return img;
 	}
-	public Dialouge getPrompt(Character x){
+	public Dialogue getPrompt(Character x){
 		x.decreaseHappiness(10);
-		return new Dialouge("You have 1 new Message: " + 
+		return new Dialogue("You have 1 new Message: " + 
 		meanComments[(int) Math.random() * 4] + "\n Your happiness has now decreased");
 	}
 	/**

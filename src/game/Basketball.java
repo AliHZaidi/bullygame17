@@ -22,11 +22,11 @@ public class Basketball extends NonPlayableObject {
 		
 	}
 	
-	public Dialouge getPrompt(Character x){
+	public Dialogue getPrompt(Character x){
 		int amount = 20 -i;
 		x.increaseHappiness(amount);
 		i -= 5;
-		return new Dialouge("You play some basketball, but after playing it seems more boring"
+		return new Dialogue("You play some basketball, but after playing it seems more boring"
 				+ "\nYour Happiness Increases by: " + amount);
 	}
 
