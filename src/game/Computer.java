@@ -31,7 +31,7 @@ public class Computer extends NonPlayableObject{
 	public Image getImage(){
 		return img;
 	}
-	public Dialouge getPrompt(Character x){
+	public Dialogue getPrompt(Character x){
 		if(position <4)
 		{
 		if(position == 0)
@@ -42,7 +42,7 @@ public class Computer extends NonPlayableObject{
 			x.decreaseHappiness(35);
 		else if(position == 3)
 			x.decreaseHappiness(45);
-		return new Dialouge("You have 1 new Message: " + 
+		return new Dialogue("You have 1 new Message: " + 
 		meanComments[position++] + "\n Your happiness has now decreased");
 		}
 		return null;

@@ -26,25 +26,19 @@ public class Scene extends JPanel implements ActionListener {
     private Timer timer;
     private Character character;
     private final int DELAY = 10;
-    public static final int BOARD_MAX_X = 640;
-    public static final int BOARD_MAX_Y = 640;
+    public static final int SCENE_MAX_X = 640;
+    public static final int SCENE_MAX_Y = 640;
 
     private Location currentLocation;
-
 
     public enum Locations  {
         HOME, OUTDOOR, SCHOOL
     }
+    
     private boolean startScreen;
 
     public Scene() {
-
-        initBoard();
-    }
-    
-    private void initBoard() {
-
-        addKeyListener(new TAdapter());
+    	addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.WHITE);
 
@@ -56,9 +50,8 @@ public class Scene extends JPanel implements ActionListener {
         startScreen = true;
 
         timer = new Timer(DELAY, this);
-        timer.start();        
+        timer.start();   
     }
-
 
     @Override
     public void paintComponent(Graphics g) {
@@ -70,7 +63,6 @@ public class Scene extends JPanel implements ActionListener {
     }
 
     private void doDrawing(Graphics g) {
-        
        Graphics2D g2d = (Graphics2D) g;
        
        if(startScreen) {
@@ -82,7 +74,7 @@ public class Scene extends JPanel implements ActionListener {
     	     g2d.setFont(new Font("Dialog", 0, 14));
     	     Location curL = character.getLocation();
     	     if(character.getInteractText() != null){
-    	    	 Dialouge dlg = character.getInteractText();
+    	    	 Dialogue dlg = character.getInteractText();
     	    	 dlg.draw(g2d);
     	    	 
     	     }

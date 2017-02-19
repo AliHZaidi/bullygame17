@@ -17,15 +17,15 @@ public class Television extends NonPlayableObject {
 		return img;
 	}
 	
-	public Dialouge getPrompt(Character x){
+	public Dialogue getPrompt(Character x){
 		if(times == 0)
 		{
 			times++;
 			x.increaseHappiness(5);
-			return new Dialouge("You watch some tv and " + 
+			return new Dialogue("You watch some tv and " + 
 			  "\n your happiness has now increased by 5");
 		}
-			return new Dialouge("Sorry, the TV is broken" +
+			return new Dialogue("Sorry, the TV is broken" +
 					"\n ,maybe go look at your computer");
 		
 		

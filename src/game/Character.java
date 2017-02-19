@@ -47,7 +47,7 @@ public class Character {
     private Integer rSidesCurIx;
     private Integer lSidesCurIx;
     
-    private Dialouge curText;
+    private Dialogue curText;
     
 	private int happiness;
     
@@ -74,7 +74,6 @@ public class Character {
     	backsCurIx = new Integer(0);
         rSidesCurIx = new Integer(0);
         lSidesCurIx = new Integer(0);
-        
 
         speed = 2;
 
@@ -91,26 +90,9 @@ public class Character {
         		imgFileNames.add(files[i].getName());
         	}
         }
-        initCraft();
-    }
-    
-    public void decreaseHappiness(int amount){
-    	happiness -= amount;
-    }
-    public void increaseHappiness(int amount){
-    	happiness += amount;
-    }
-    public void decreaseHappiness(){
-    	--happiness;
-    }
-    public void increaseHappiness(){
-    	++happiness;
-    }
-    
-    
-    private void initCraft() {
-        x = Scene.BOARD_MAX_X / 2;
-        y = Scene.BOARD_MAX_Y / 2;
+
+        x = Scene.SCENE_MAX_X / 2;
+        y = Scene.SCENE_MAX_Y / 2;
         
     	for(String e : imgFileNames){
         	if(e.contains("back") && e.contains(name)){
@@ -137,6 +119,19 @@ public class Character {
         curCurORIxs = 0;
         x = 40;
         y = 60;
+    }
+    
+    public void decreaseHappiness(int amount){
+    	happiness -= amount;
+    }
+    public void increaseHappiness(int amount){
+    	happiness += amount;
+    }
+    public void decreaseHappiness(){
+    	--happiness;
+    }
+    public void increaseHappiness(){
+    	++happiness;
     }
 
     public Location getLocation() {
@@ -209,7 +204,7 @@ public class Character {
     public int getY() {
         return y;
     }
-    public Dialouge getInteractText(){
+    public Dialogue getInteractText(){
     	return curText;
     }
 

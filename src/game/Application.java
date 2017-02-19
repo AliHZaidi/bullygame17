@@ -5,18 +5,13 @@ import javax.swing.JFrame;
 public class Application extends JFrame {
 
     public Application() {
-        initUI();
-    }
-    
-    private void initUI() {
-        
-        add(new Scene());
+    	add(new Scene());
 
-        setSize(Scene.BOARD_MAX_X, Scene.BOARD_MAX_Y);
+        setSize(Scene.SCENE_MAX_X, Scene.SCENE_MAX_Y);
 
         setResizable(false);
         
-        setTitle("Bully Game");
+        setTitle("Messages Matter");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
