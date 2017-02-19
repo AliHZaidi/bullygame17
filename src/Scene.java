@@ -70,9 +70,10 @@ public class Scene extends JPanel implements ActionListener {
        if(startScreen) {
 
        } else {
-             g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
+            //Draw location
              character.getLocation().draw(g, this);
-    
+             //Draw character sprites last
+              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
        }        
     }
 
