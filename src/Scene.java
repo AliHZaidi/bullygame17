@@ -15,11 +15,16 @@ public class Scene extends JPanel implements ActionListener {
 
     private Timer timer;
     private Character character;
-    private ArrayList<Box> boxes;
     private final int DELAY = 10;
     public static final int BOARD_MAX_X = 640;
     public static final int BOARD_MAX_Y = 640;
 
+    private Location currentLocation;
+
+
+    public enum Locations  {
+        HOME, OUTDOOR, SCHOOL
+    }
     private boolean startScreen;
 
 
@@ -40,28 +45,12 @@ public class Scene extends JPanel implements ActionListener {
         character = new Character("bully");
         
         //Add boxes, this will eventually be loaded from some sort of map
-        boxes = new ArrayList<Box>();
-        for(int i = 0; i < 20; i++) {
-            boxes.add(new Box(i, 0));
-        }
-        for(int i = 1; i < 20; i++) {
-            boxes.add(new Box(0, i));
-        }
-        for(int i = 1; i < 20; i++) {
-            boxes.add(new Box(19, i));
-        }
+        currentLocation = new Home();
         
         startScreen = true;
 
         timer = new Timer(DELAY, this);
         timer.start();        
-    }
-
-    /*
-    Returns array list of boxes
-    */
-    public ArrayList<Box> getBoxes() {
-        return this.boxes;
     }
 
 
@@ -82,18 +71,15 @@ public class Scene extends JPanel implements ActionListener {
 
        } else {
              g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
-        
-        //draw boxes
-        for(Box box : boxes) {
-            g2d.drawImage(box.getImage(), box.getX(), box.getY(), this);
-        }
+             currentLocation.draw(g, this);
+    
        }        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        character.move(this.boxes);
+        character.move(currentLocation.getMap());
         repaint();  
     }
 
