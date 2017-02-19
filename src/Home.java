@@ -15,7 +15,16 @@ public class Home extends Location {
         }
     }
 
-    public Location getAdjacent() {
+    public Location getLeft() {
         return new Outside();
     }
+    public Location getRight() {
+        return new Outside();
+    }  
+    public Location getTop() {
+        return new Outside();
+    }  
+    public Location getBottom() {
+        return new Outside();
+    }     
 }
