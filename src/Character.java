@@ -74,13 +74,10 @@ public class Character {
 
 
     public void move(ArrayList<Box> boxes) {
-    	
-
         if(!collison(x+dx, y+dy, boxes)) {
             x += dx;
     	    y += dy;
         }
-    	
     	
     	if (x <= 10) {
     		x = 10;
@@ -120,26 +117,30 @@ public class Character {
         return curImage;
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e, ArrayList<Box> boxes) {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
+        if (key == KeyEvent.VK_SPACE && this.isNearNPC(boxes)) {
+        	System.out.println("hell yeah d00d");
+        }
+        
+        else if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
             dx = -1;
             leftIsPressed = true;
         }
 
-        if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
+        else if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
             dx = 1;
             rightIsPressed = true;
         }
 
-        if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
+        else if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
             dy = -1;
             upIsPressed = true;
         }
 
-        if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
+        else if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
             dy = 1;
             downIsPressed = true;
         }
@@ -186,5 +187,15 @@ public class Character {
     	else if (rightIsPressed) {
             curImage = rSides.get(0);
     	}
+    }
+    
+    private boolean isNearNPC(ArrayList<Box> boxes) {
+    	for (Box b : boxes) {
+            if ((x + 40 > b.getX() && x < b.getX() + 40) && (y + 40 > b.getY() && y < b.getY() + 40)) {
+            	return true;
+            }
+        }
+    	
+    	return false;
     }
 }

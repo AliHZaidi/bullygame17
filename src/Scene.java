@@ -1,6 +1,9 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,9 +23,6 @@ public class Scene extends JPanel implements ActionListener {
     public static final int BOARD_MAX_X = 640;
     public static final int BOARD_MAX_Y = 640;
 
-
-    public ArrayList<Integer> keysPressed;
-
     public Scene() {
 
         initBoard();
@@ -30,7 +30,6 @@ public class Scene extends JPanel implements ActionListener {
     
     private void initBoard() {
 
-        keysPressed = new ArrayList<Integer>();
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -71,7 +70,14 @@ public class Scene extends JPanel implements ActionListener {
         for(Box box : boxes) {
             g2d.drawImage(box.getImage(), box.getX(), box.getY(), this);
         }
-                
+
+        /*
+        g2d.setColor(Color.BLACK);
+        g2d.fill3DRect(32, BOARD_MAX_Y - 128, BOARD_MAX_X - 70, 64, true);
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(new Font("Comic Sans", Font.BOLD, 30));
+        g2d.drawString("Cal sux", 40, BOARD_MAX_Y - 96);
+        */
     }
 
     @Override
@@ -89,7 +95,7 @@ public class Scene extends JPanel implements ActionListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            character.keyPressed(e);
+            character.keyPressed(e, boxes);
         }
     }
 }
