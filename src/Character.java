@@ -148,7 +148,7 @@ public class Character {
             x += dx*speed;
     	    y += dy*speed;
         }
-
+    	
         //check if character has left location if so 
     	if (this.x < 0 || this.x > 630 || this.y < 0 || this.y > 640) leave();
     }
@@ -203,11 +203,15 @@ public class Character {
         return curImage;
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e, ArrayList<Box> boxes) {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
+        if (key == KeyEvent.VK_SPACE && this.isNearNPC(boxes)) {
+        	System.out.println("hell yeah d00d");
+        }
+        
+        else if (key == KeyEvent.VK_LEFT && !upIsPressed && !downIsPressed) {
             dx = -1;
             leftIsPressed = true;
             curImages = lSides;
@@ -215,7 +219,7 @@ public class Character {
             curCurORIxs = 3;
         }
 
-        if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
+        else if (key == KeyEvent.VK_RIGHT && !upIsPressed && !downIsPressed) {
             dx = 1;
             rightIsPressed = true;
             curImages = rSides;
@@ -223,7 +227,7 @@ public class Character {
             curCurORIxs = 2;
         }
 
-        if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
+        else if (key == KeyEvent.VK_UP && !leftIsPressed && !rightIsPressed) {
             dy = -1;
             upIsPressed = true;
             curImages = backs;
@@ -231,15 +235,13 @@ public class Character {
             curCurORIxs = 1;
         }
 
-        if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
+        else if (key == KeyEvent.VK_DOWN && !leftIsPressed && !rightIsPressed) {
             dy = 1;
             downIsPressed = true;
             curImages = fronts;
             changeImg = true;
             curCurORIxs = 0;
         }
-        
-       // updateSprite();
     }
 
     public void keyReleased(KeyEvent e) {       
@@ -268,7 +270,7 @@ public class Character {
             downIsPressed = false;
             changeImg = false;
         }
-        
+
     }
 
 	/**
@@ -279,4 +281,13 @@ public class Character {
 	}
     
 
+    private boolean isNearNPC(ArrayList<Box> boxes) {
+    	for (Box b : boxes) {
+            if ((x + 40 > b.getX() && x < b.getX() + 40) && (y + 40 > b.getY() && y < b.getY() + 40)) {
+            	return true;
+            }
+        }
+    	
+    	return false;
+    }
 }
