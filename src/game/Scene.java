@@ -18,11 +18,11 @@ import javax.swing.Timer;
 import locations.*;
 
 
+
 import java.util.ArrayList;
 
 
 public class Scene extends JPanel implements ActionListener {
-
 	private Timer timer;
 	private Character character;
 	private final int DELAY = 10;
@@ -74,12 +74,13 @@ public class Scene extends JPanel implements ActionListener {
 		} else if (character.getHappiness() > 0) { 
 			g2d.setFont(new Font("Dialog", 0, 14));
 			Location curL = character.getLocation();
+			curL.draw(g, this);
 			if(character.getInteractText() != null){
 				Dialogue dlg = character.getInteractText();
 				dlg.draw(g2d);
 			}
 			g2d.setFont(new Font("Dialog", 0, 24));
-			curL.draw(g, this);
+			
 			g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
 			//Draw score
 			g2d.setColor(Color.WHITE);
@@ -87,6 +88,7 @@ public class Scene extends JPanel implements ActionListener {
 			g2d.setColor(Color.BLACK);
 			g2d.drawString("☺ " + character.getHappiness(), 530, 43);
 		}
+
 
        else{
                creditcounter++;
@@ -112,6 +114,7 @@ public class Scene extends JPanel implements ActionListener {
                    g2d.drawImage(new ImageIcon("credit4.png").getImage(),0,0,this);
                }
        }
+    	   
 
 	}
 

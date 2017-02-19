@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import game.Box;
+import game.Bully;
 import game.NonPlayableObject;
 
 import java.awt.Image;
@@ -22,7 +23,8 @@ public abstract class Location {
         g2d.drawImage(this.background, 0, 0, panel);
         // draw boxes
         for(NonPlayableObject npo : this.map) {
-            g2d.drawImage(npo.getImage(), npo.getX(), npo.getY(), panel);
+        	g2d.drawImage(npo.getImage(), npo.getX(), npo.getY(), panel);
+           
         }   
     }
 
