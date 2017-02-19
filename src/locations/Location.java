@@ -10,8 +10,8 @@ import game.NonPlayableObject;
 import java.awt.Image;
 
 public abstract class Location {
-    public ArrayList<NonPlayableObject> map;
-    public Image background;
+    protected ArrayList<NonPlayableObject> map;
+    protected Image background;
 
     public ArrayList<NonPlayableObject> getMap() {
         return map;

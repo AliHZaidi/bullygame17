@@ -242,6 +242,8 @@ public class Character {
         if (key == KeyEvent.VK_SPACE && this.isNearNPC(arrayList)) {
         	if(nearbyObj instanceof Computer){
         		curText = ((Computer) nearbyObj).getPrompt(this);
+        	}else if(nearbyObj instanceof Basketball){
+        		curText = ((Basketball) nearbyObj).getPrompt(this);
         	}
         }
         

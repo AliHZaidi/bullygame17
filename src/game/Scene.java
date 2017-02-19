@@ -78,13 +78,12 @@ public class Scene extends JPanel implements ActionListener {
     	   g2d.drawImage(ii.getImage(),0,0,this);
 
 
-       } else { 
+       } else if (character.getHappiness() > 0) { 
     	     g2d.setFont(new Font("Dialog", 0, 14));
     	     Location curL = character.getLocation();
     	     if(character.getInteractText() != null){
     	    	 Dialouge dlg = character.getInteractText();
     	    	 dlg.draw(g2d);
-    	    	 
     	     }
     	     g2d.setFont(new Font("Dialog", 0, 24));
              curL.draw(g, this);
@@ -92,7 +91,11 @@ public class Scene extends JPanel implements ActionListener {
              
              g2d.setColor(Color.RED);
              g2d.drawString("Happiness Level = " + character.getHappiness(), 10, 20);
-       }        
+       }
+       else{
+    	  
+    	   
+       }
 
     }
 
