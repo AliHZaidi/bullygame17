@@ -41,10 +41,9 @@ public class Scene extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 
 		character = new Character("hero");
-
-		//Add boxes, this will eventually be loaded from some sort of map
 		
-
+		// set text initial tutorial dialogue
+		character.setInteractText(new Dialogue("You awaken in your room.\nPress space to interact with some objects."));
 		startScreen = true;
 
 		timer = new Timer(DELAY, this);
@@ -61,10 +60,11 @@ public class Scene extends JPanel implements ActionListener {
 	}
 
 	private void doDrawing(Graphics g) {
+		
 		if (character.isMovingAtAll()) {
 			character.setInteractText(null);
 		}
-		
+
 		Graphics2D g2d = (Graphics2D) g;
 
 		if(startScreen) {
@@ -75,12 +75,13 @@ public class Scene extends JPanel implements ActionListener {
 			g2d.setFont(new Font("Dialog", 0, 14));
 			Location curL = character.getLocation();
 			curL.draw(g, this);
+
 			if(character.getInteractText() != null){
 				Dialogue dlg = character.getInteractText();
 				dlg.draw(g2d);
 			}
 			g2d.setFont(new Font("Dialog", 0, 24));
-			
+
 			g2d.drawImage(character.getImage(), character.getX(), character.getY(), this);
 			//Draw score
 			g2d.setColor(Color.WHITE);
@@ -90,31 +91,31 @@ public class Scene extends JPanel implements ActionListener {
 		}
 
 
-       else{
-               creditcounter++;
-               if(creditcounter <750)
-               {
-                   g2d.drawImage(new ImageIcon("credit1.png").getImage(),0,0,this);
-                
-               }
-              
-               if(creditcounter<1500 && creditcounter> 751)
-               {
-                   ImageIcon a =new ImageIcon("credit2.png");
-                   g2d.drawImage(a.getImage(),0,0,this);
-               }
-              
-               if(creditcounter >1501 && creditcounter < 2250)
-               {
-                   g2d.drawImage(new ImageIcon("credit3.png").getImage(),0,0,this);
-               }
-              
-               if(creditcounter > 2251 )
-               {
-                   g2d.drawImage(new ImageIcon("credit4.png").getImage(),0,0,this);
-               }
-       }
-    	   
+		else{
+			creditcounter++;
+			if(creditcounter <750)
+			{
+				g2d.drawImage(new ImageIcon("credit1.png").getImage(),0,0,this);
+
+			}
+
+			if(creditcounter<1500 && creditcounter> 751)
+			{
+				ImageIcon a =new ImageIcon("credit2.png");
+				g2d.drawImage(a.getImage(),0,0,this);
+			}
+
+			if(creditcounter >1501 && creditcounter < 2250)
+			{
+				g2d.drawImage(new ImageIcon("credit3.png").getImage(),0,0,this);
+			}
+
+			if(creditcounter > 2251 )
+			{
+				g2d.drawImage(new ImageIcon("credit4.png").getImage(),0,0,this);
+			}
+		}
+
 
 	}
 
