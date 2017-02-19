@@ -1,9 +1,12 @@
+package game;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+
+import locations.Location;
 
 public class Character {
 	
@@ -154,11 +157,33 @@ public class Character {
     }
 
     private void leave() {
-        this.location = this.location.getAdjacent();
-        if(this.x < 0) this.x = 630;
-        if(this.x > 640) this.x = 10;
-        if(this.y < 0) this.y = 630;
-        if(this.y > 640) this.y = 10;
+
+        
+        
+        //Leave left
+        if(this.x < 0) {
+            this.x = 630;
+            this.location = this.location.getLeft();
+        }
+
+        //Leave right 
+        if(this.x > 640) {
+            this.x = 10;
+            this.location = this.location.getRight();
+        } 
+
+        //Leave top
+        if(this.y < 0) {
+            this.y = 630;
+            this.location = this.location.getTop();
+        } 
+
+        //Leave bottom
+        if(this.y > 640) {
+            this.y = 10;
+            this.location = this.location.getBottom();
+        } 
+
     }
     
     /*

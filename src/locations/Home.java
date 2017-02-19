@@ -1,4 +1,8 @@
+package locations;
 import java.util.ArrayList;
+
+import game.Box;
+import game.Computer;
 
 public class Home extends Location {
 	private Computer cpu;
@@ -17,10 +21,21 @@ public class Home extends Location {
         super.map.add(cpu);
     }
 
-    public Location getAdjacent() {
+    public Location getLeft() {
         return new Outside();
     }
     public Computer getCPU(){
     	return cpu;
     }
+
+    public Location getRight() {
+        return new Outside();
+    }  
+    public Location getTop() {
+        return new Outside();
+    }  
+    public Location getBottom() {
+        return new Outside();
+    }     
+
 }
