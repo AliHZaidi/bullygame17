@@ -12,16 +12,19 @@ public class PlayerHome extends Location {
 	private Computer cpu;
 	
     public PlayerHome() {
-        this.map = new ArrayList<NonPlayableObject>();
+        super.map = new ArrayList<NonPlayableObject>();
+        
+        ImageIcon homeWall = new ImageIcon("box.png");
         for(int i = 0; i < 20; i++) {
-            super.map.add(new Box(i, 0));
+            super.map.add(new Box(homeWall.getImage(), i, 0));
         }
         for(int i = 1; i < 20; i++) {
-            super.map.add(new Box(0, i));
+            super.map.add(new Box(homeWall.getImage(), 0, i));
         }
         for(int i = 1; i < 20; i++) {
-            super.map.add(new Box(19, i));
+            super.map.add(new Box(homeWall.getImage(), 19, i));
         }
+        
         cpu = new Computer(new ImageIcon("Computer.png").getImage(), 250,200);
         super.map.add(cpu);
         
